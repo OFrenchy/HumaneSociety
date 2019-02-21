@@ -8,7 +8,32 @@ namespace HumaneSociety
 {
     public static class Query
     {
+        // TODO - // "create" "update"  "read"  "delete"
+        internal static void RunEmployeeQueries(Employee employee, string action) 
+        {
 
+        }
+        internal static Animal GetAnimalByID(int iD)
+        {
+            // TODO - fill this in
+            Animal animal = null;
+
+
+
+            return animal;
+        }
+        internal static void Adopt(Animal animal, Client client)
+        {
+            // TODO - fill this in
+
+        }
+        internal static List<Animal> SearchForAnimalByMultipleTraits()
+        {
+            // TODO - fill this in
+            List<Animal> animalsFound = new List<Animal>();
+
+            return animalsFound;
+    }
         internal static List<USState> GetStates()
         {
             // HumaneSocietyDataContext  db = new HumaneSocietyDataContext();
