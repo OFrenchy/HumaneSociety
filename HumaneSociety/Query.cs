@@ -36,7 +36,7 @@ namespace HumaneSociety
     }
         internal static List<USState> GetStates()
         {
-            // HumaneSocietyDataContext  db = new HumaneSocietyDataContext();
+            HumaneSocietyDataContext  db = new HumaneSocietyDataContext();
 
             List<USState> allStates = db.USStates.ToList();
 
@@ -45,7 +45,7 @@ namespace HumaneSociety
 
         internal static Client GetClient(string userName, string password)
         {
-            // HumaneSocietyDataContext db = new HumaneSocietyDataContext();
+            HumaneSocietyDataContext db = new HumaneSocietyDataContext();
 
             Client client = db.Clients.Where(c => c.Username == userName && c.Password == password).Single();
 
@@ -54,7 +54,7 @@ namespace HumaneSociety
 
         internal static List<Client> GetClients()
         {
-            // HumaneSocietyDataContext  db = new HumaneSocietyDataContext();
+            HumaneSocietyDataContext  db = new HumaneSocietyDataContext();
 
             List<Client> allClients = db.Clients.ToList();
 
@@ -63,7 +63,7 @@ namespace HumaneSociety
 
         internal static void AddNewClient(string firstName, string lastName, string username, string password, string email, string streetAddress, int zipCode, int stateId)
         {
-            // HumaneSocietyDataContext  db = new HumaneSocietyDataContext();
+            HumaneSocietyDataContext  db = new HumaneSocietyDataContext();
 
             Client newClient = new Client();
 
@@ -100,7 +100,7 @@ namespace HumaneSociety
 
         internal static void UpdateClient(Client clientWithUpdates)
         {
-            // HumaneSocietyDataContext  db = new HumaneSocietyDataContext();
+            HumaneSocietyDataContext  db = new HumaneSocietyDataContext();
 
             // find corresponding Client from Db
             Client clientFromDb = db.Clients.Where(c => c.ClientId == clientWithUpdates.ClientId).Single();
@@ -142,7 +142,7 @@ namespace HumaneSociety
 
         internal static Employee RetrieveEmployeeUser(string email, int employeeNumber)
         {
-            // HumaneSocietyDataContext  db = new HumaneSocietyDataContext();
+            HumaneSocietyDataContext  db = new HumaneSocietyDataContext();
 
             Employee employeeFromDb = db.Employees.Where(e => e.Email == email && e.EmployeeNumber == employeeNumber).FirstOrDefault();
 
@@ -158,7 +158,7 @@ namespace HumaneSociety
 
         internal static Employee EmployeeLogin(string userName, string password)
         {
-            // HumaneSocietyDataContext  db = new HumaneSocietyDataContext();
+            HumaneSocietyDataContext  db = new HumaneSocietyDataContext();
 
             Employee employeeFromDb = db.Employees.Where(e => e.UserName == userName && e.Password == password).FirstOrDefault();
 
@@ -167,7 +167,7 @@ namespace HumaneSociety
 
         internal static bool CheckEmployeeUserNameExist(string userName)
         {
-            // HumaneSocietyDataContext  db = new HumaneSocietyDataContext();
+            HumaneSocietyDataContext  db = new HumaneSocietyDataContext();
 
             Employee employeeWithUserName = db.Employees.Where(e => e.UserName == userName).FirstOrDefault();
 
@@ -176,7 +176,7 @@ namespace HumaneSociety
 
         internal static void AddUsernameAndPassword(Employee employee)
         {
-            // HumaneSocietyDataContext  db = new HumaneSocietyDataContext();
+            HumaneSocietyDataContext  db = new HumaneSocietyDataContext();
 
             Employee employeeFromDb = db.Employees.Where(e => e.EmployeeId == employee.EmployeeId).FirstOrDefault();
 
