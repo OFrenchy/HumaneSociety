@@ -97,7 +97,7 @@ namespace HumaneSociety
         private void CheckAnimalStatus()
         {
             Console.Clear();            
-            var animals = Query.SearchForAnimalByMultipleTraits().ToList();
+            var animals = Query.SearchForAnimalByMulitpleTraits().ToList();
             if(animals.Count > 1)
             {
                 UserInterface.DisplayUserOptions("Several animals found");
@@ -158,10 +158,11 @@ namespace HumaneSociety
         private void CheckShots(Animal animal)
         {
             List<string> shotInfo = new List<string>();
-            var shots = Query.GetShots(animal);
-            foreach(AnimalShot shot in shots.ToList())
+            var animalShots = Query.GetShots(animal);
+            foreach(AnimalShot animalShot in animalShots.ToList())
             {
-                shotInfo.Add($"{shot.Shot.Name} Date: {shot.DateReceived}");
+                
+                shotInfo.Add($"{animalShot.Shot.Name} Date: {animalShot.DateReceived}");
             }
             if(shotInfo.Count > 0)
             {
@@ -222,7 +223,7 @@ namespace HumaneSociety
 
         private void RemoveAnimal()
         {            
-            var animals = Query.SearchForAnimalByMultipleTraits().ToList();
+            var animals = Query.SearchForAnimalByMulitpleTraits().ToList();
             if (animals.Count > 1)
             {
                 UserInterface.DisplayUserOptions("Several animals found please refine your search.");

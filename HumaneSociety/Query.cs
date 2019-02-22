@@ -8,7 +8,6 @@ namespace HumaneSociety
 {
     public static class Query
     {
-<<<<<<< HEAD
         internal static void RunEmployeeQueries(Employee employee, string action)
         {
 
@@ -16,20 +15,24 @@ namespace HumaneSociety
         internal static Animal GetAnimalByID(int ID)
         {
             Animal animal = null;
-=======
-        // TODO - // "create" "update"  "read"  "delete"
-        internal static void RunEmployeeQueries(Employee employee, string action) 
-        {
-
-        }
-        internal static Animal GetAnimalByID(int iD)
-        {
-            // TODO - fill this in
-            Animal animal = null;
-
-
 
             return animal;
+        }
+        internal static List<AnimalShot> GetShots(Animal animal)
+        {
+            //TODO - fill this in
+            //AnimalShot
+            List<AnimalShot> animalshots = new List<AnimalShot>();
+            return animalshots;
+        }
+
+        internal static List<USState> GetStates()
+        {
+            HumaneSocietyDataContext db = new HumaneSocietyDataContext();
+
+            List<USState> allStates = db.USStates.ToList();
+
+            return allStates;
         }
         internal static Room GetRoom(int AnimalId)
         {
@@ -38,60 +41,66 @@ namespace HumaneSociety
 
             return room;
         }
-        internal static void Adopt(Animal animal, Client client)
+        internal static int GetCategoryId()
         {
-            // TODO - fill this in
-
+            //TODO
+            return 0;
         }
-        internal static List<Animal> SearchForAnimalByMultipleTraits()
+        internal static int GetDietPlanId()
         {
-            // TODO - fill this in
-            List<Animal> animalsFound = new List<Animal>();
-
-            return animalsFound;
+            //TODO
+            return 0;
         }
-        internal static List<Adoption> GetPendingAdoptions()
+        internal static void RemoveAnimal(Animal animal)
         {
-            HumaneSocietyDataContext db = new HumaneSocietyDataContext();
-
-            List<Adoption> pendingAdoptions = db.Adoptions.Where(a => a.ApprovalStatus == "pending").ToList();
-
-            return pendingAdoptions;
+            //TODO
         }
->>>>>>> 58f3460e5c566925f6792d11490bee959b1ddd38
-
-            return animal;
-        }
-        internal static List<USState> GetStates()
-        {
-<<<<<<< HEAD
-            HumaneSocietyDataContext db = new HumaneSocietyDataContext();
-=======
-            HumaneSocietyDataContext  db = new HumaneSocietyDataContext();
->>>>>>> 58f3460e5c566925f6792d11490bee959b1ddd38
-
-            List<USState> allStates = db.USStates.ToList();
-
-            return allStates;
-        }
-
         internal static void Adopt(Animal animal, Client client)
         {
 
 
         }
-
+        internal static void AddAnimal(Animal animal)
+        {
+            //TODO
+        }
         internal static List<Animal> SearchForAnimalByMulitpleTraits()
         {
             List<Animal> animalsfound = new List<Animal>();
             return animalsfound;
         }
+        internal static List<Adoption> GetPendingAdoptions()
+        {
+            HumaneSocietyDataContext db = new HumaneSocietyDataContext();
+            // TODO - status pending??  
+            List<Adoption> pendingAdoptions = db.Adoptions.Where(a => a.ApprovalStatus == "pending").ToList();
+            return pendingAdoptions;
+        }
+
+        internal static void UpdateAdoption(bool approve, Adoption adoption)
+        {
+            HumaneSocietyDataContext db = new HumaneSocietyDataContext();
+            //ToDO
+            adoption.ApprovalStatus = approve ? "approved" : "denied";
+            var dbAdoption = db.Adoptions.Where(a => a.AdoptionId == adoption.AdoptionId);
+
+            db.SubmitChanges();
+        }
+        internal static void UpdateShot(string blahblah, Animal animal)
+        {
+            //TODO 
+        }
+        internal static void EnterAnimalUpdate(Animal animal, Dictionary<int, string> updates)
+        {
+            //TODO
+        }
+
         internal static Client GetClient(string userName, string password)
         {
             HumaneSocietyDataContext db = new HumaneSocietyDataContext();
 
-            Client client = db.Clients.Where(c => c.Username == userName && c.Password == password).Single();
-            //was "c.Username"
+            Client client = db.Clients.Where(c => c.UserName == userName && c.Password == password).Single();
+
             return client;
         }
 

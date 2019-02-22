@@ -91,8 +91,8 @@ namespace HumaneSociety
 
         private void RunSearch()
         {
-            Console.Clear();            
-            var animals = Query.SearchForAnimalByMultipleTraits().ToList();
+            Console.Clear();
+            var animals = Query.SearchForAnimalByMulitpleTraits().ToList();
             if (animals.Count > 1)
             {
                 UserInterface.DisplayUserOptions("Several animals found");
