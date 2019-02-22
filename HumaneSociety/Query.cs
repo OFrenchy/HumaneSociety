@@ -8,6 +8,7 @@ namespace HumaneSociety
 {
     public static class Query
     {
+<<<<<<< HEAD
         internal static void RunEmployeeQueries(Employee employee, string action)
         {
 
@@ -15,12 +16,59 @@ namespace HumaneSociety
         internal static Animal GetAnimalByID(int ID)
         {
             Animal animal = null;
+=======
+        // TODO - // "create" "update"  "read"  "delete"
+        internal static void RunEmployeeQueries(Employee employee, string action) 
+        {
+
+        }
+        internal static Animal GetAnimalByID(int iD)
+        {
+            // TODO - fill this in
+            Animal animal = null;
+
+
+
+            return animal;
+        }
+        internal static Room GetRoom(int AnimalId)
+        {
+            // TODO - fill this in
+            Room room = new Room();
+
+            return room;
+        }
+        internal static void Adopt(Animal animal, Client client)
+        {
+            // TODO - fill this in
+
+        }
+        internal static List<Animal> SearchForAnimalByMultipleTraits()
+        {
+            // TODO - fill this in
+            List<Animal> animalsFound = new List<Animal>();
+
+            return animalsFound;
+        }
+        internal static List<Adoption> GetPendingAdoptions()
+        {
+            HumaneSocietyDataContext db = new HumaneSocietyDataContext();
+
+            List<Adoption> pendingAdoptions = db.Adoptions.Where(a => a.ApprovalStatus == "pending").ToList();
+
+            return pendingAdoptions;
+        }
+>>>>>>> 58f3460e5c566925f6792d11490bee959b1ddd38
 
             return animal;
         }
         internal static List<USState> GetStates()
         {
+<<<<<<< HEAD
             HumaneSocietyDataContext db = new HumaneSocietyDataContext();
+=======
+            HumaneSocietyDataContext  db = new HumaneSocietyDataContext();
+>>>>>>> 58f3460e5c566925f6792d11490bee959b1ddd38
 
             List<USState> allStates = db.USStates.ToList();
 
@@ -43,7 +91,7 @@ namespace HumaneSociety
             HumaneSocietyDataContext db = new HumaneSocietyDataContext();
 
             Client client = db.Clients.Where(c => c.Username == userName && c.Password == password).Single();
-
+            //was "c.Username"
             return client;
         }
 
