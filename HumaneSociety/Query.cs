@@ -40,7 +40,16 @@ namespace HumaneSociety
             List<Animal> animalsFound = new List<Animal>();
 
             return animalsFound;
-    }
+        }
+        internal static List<Adoption> GetPendingAdoptions()
+        {
+            HumaneSocietyDataContext db = new HumaneSocietyDataContext();
+
+            List<Adoption> pendingAdoptions = db.Adoptions.Where(a => a.ApprovalStatus == "pending").ToList();
+
+            return pendingAdoptions;
+        }
+
         internal static List<USState> GetStates()
         {
             HumaneSocietyDataContext  db = new HumaneSocietyDataContext();
@@ -54,7 +63,7 @@ namespace HumaneSociety
         {
             HumaneSocietyDataContext db = new HumaneSocietyDataContext();
 
-            Client client = db.Clients.Where(c => c.UserName == userName && c.Password == password).Single();
+            Client client = db.Clients.Where(c => c.Username == userName && c.Password == password).Single();
             //was "c.Username"
             return client;
         }
