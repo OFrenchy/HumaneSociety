@@ -12,14 +12,19 @@ namespace HumaneSociety
         // TODO - // "create" "update"  "read"  "delete"
         internal static void RunEmployeeQueries(Employee employee, string action) 
         {
+            HumaneSocietyDataContext db = new HumaneSocietyDataContext();
+            
 
+
+            // this is for create
+            //Employee employeeFromDb = db.Employees.Where(e => e.EmployeeId == employee.EmployeeId).FirstOrDefault();
+            db.Employees.InsertOnSubmit(employee);
+            db.SubmitChanges();
         }
-        internal static Animal GetAnimalByID(int iD)
+        internal static Animal GetAnimalByID(int ID)
         {
-            // TODO - fill this in
+            //TODO - fill this in
             Animal animal = null;
-
-
 
             return animal;
         }
@@ -27,9 +32,17 @@ namespace HumaneSociety
         {
             //TODO - fill this in
             //AnimalShot
-            List<AnimalShot> animalShots  = new List<AnimalShot>();
+            List<AnimalShot> animalshots = new List<AnimalShot>();
+            return animalshots;
+        }
 
-            return animalShots;
+        internal static List<USState> GetStates()
+        {
+            HumaneSocietyDataContext db = new HumaneSocietyDataContext();
+
+            List<USState> allStates = db.USStates.ToList();
+
+            return allStates;
         }
         internal static Room GetRoom(int AnimalId)
         {
@@ -40,27 +53,32 @@ namespace HumaneSociety
         }
         internal static int GetCategoryId()
         {
-            // TODO
-
+            //TODO
             return 0;
         }
-
+        internal static int GetDietPlanId()
+        {
+            //TODO
+            return 0;
+        }
         internal static void RemoveAnimal(Animal animal)
         {
             //TODO
-
         }
         internal static void Adopt(Animal animal, Client client)
         {
-            // TODO - fill this in
-
+            //TODO
         }
-        internal static List<Animal> SearchForAnimalByMultipleTraits()
+        internal static void AddAnimal(Animal animal)
         {
-            // TODO - fill this in
-            List<Animal> animalsFound = new List<Animal>();
+            //TODO
+        }
+        internal static List<Animal> SearchForAnimalByMulitpleTraits()
+        {
+            //TODO
+            List<Animal> animalsfound = new List<Animal>();
 
-            return animalsFound;
+            return animalsfound;
         }
         internal static List<Adoption> GetPendingAdoptions()
         {
@@ -69,32 +87,23 @@ namespace HumaneSociety
             List<Adoption> pendingAdoptions = db.Adoptions.Where(a => a.ApprovalStatus == "pending").ToList();
             return pendingAdoptions;
         }
+
         internal static void UpdateAdoption(bool approve, Adoption adoption)
         {
             HumaneSocietyDataContext db = new HumaneSocietyDataContext();
-            // TODO - status approved ??  
-            adoption.ApprovalStatus =  approve ? "approved" : "denied";
-            
-            // TODO - how do you update???
-            var dbAdoption = db.Adoptions.Where(a => a.AdoptionId == adoption.AdoptionId);  //.Select(a => a.ApprovalStatus) = approve ? "approved" : "disapproved";
-            
+            //ToDO
+            adoption.ApprovalStatus = approve ? "approved" : "denied";
+            var dbAdoption = db.Adoptions.Where(a => a.AdoptionId == adoption.AdoptionId);
+
             db.SubmitChanges();
         }
-        internal static void UpdateShot(string blahblah , Animal animal)
+        internal static void UpdateShot(string blahblah, Animal animal)
         {
             //TODO 
         }
         internal static void EnterAnimalUpdate(Animal animal, Dictionary<int, string> updates)
         {
-            // TODO
-        }
-        internal static List<USState> GetStates()
-        {
-            HumaneSocietyDataContext  db = new HumaneSocietyDataContext();
-
-            List<USState> allStates = db.USStates.ToList();
-
-            return allStates;
+            //TODO
         }
 
         internal static Client GetClient(string userName, string password)
@@ -102,7 +111,7 @@ namespace HumaneSociety
             HumaneSocietyDataContext db = new HumaneSocietyDataContext();
 
             Client client = db.Clients.Where(c => c.UserName == userName && c.Password == password).Single();
-            //was "c.Username"
+
             return client;
         }
 
@@ -200,14 +209,14 @@ namespace HumaneSociety
 
             Employee employeeFromDb = db.Employees.Where(e => e.Email == email && e.EmployeeNumber == employeeNumber).FirstOrDefault();
 
-            if(employeeFromDb == null)
-            {
-                throw new NullReferenceException();            
-            }
-            else
-            {
+            //if(employeeFromDb == null)
+            //{
+            //    throw new NullReferenceException();            
+            //}
+            //else
+            //{
                 return employeeFromDb;
-            }            
+            //}            
         }
 
         internal static Employee EmployeeLogin(string userName, string password)
@@ -216,7 +225,15 @@ namespace HumaneSociety
 
             Employee employeeFromDb = db.Employees.Where(e => e.UserName == userName && e.Password == password).FirstOrDefault();
 
-            return employeeFromDb;
+            //return employeeFromDb;
+            if (employeeFromDb == null)
+            {
+                throw new NullReferenceException();
+            }
+            else
+            {
+                return employeeFromDb;
+            }
         }
 
         internal static bool CheckEmployeeUserNameExist(string userName)
@@ -233,11 +250,11 @@ namespace HumaneSociety
             HumaneSocietyDataContext  db = new HumaneSocietyDataContext();
 
             Employee employeeFromDb = db.Employees.Where(e => e.EmployeeId == employee.EmployeeId).FirstOrDefault();
-
+            //db.Employees.InsertOnSubmit(employee);
+            //db.SubmitChanges();
             employeeFromDb.UserName = employee.UserName;
             employeeFromDb.Password = employee.Password;
 
-            db.SubmitChanges();
         }
     }
 }

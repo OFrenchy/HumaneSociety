@@ -1,0 +1,112 @@
+
+--=======  Dogs  ==========================================================================
+--INSERT INTO Animals VALUES (
+--'Lambeau', (select CategoryID from Categories where Name = 'Dog'), 75, 4, null, 'Playful', 1,
+--1, 'Male', null, null
+--);
+--INSERT INTO Animals VALUES(
+--'Tundra', (select CategoryID from Categories where name = 'Dog'), 65, 1, null, 'Playful', 1, 1,
+--'Female', null, null
+--);
+--INSERT INTO Animals VALUES(
+--'Apollo', (select CategoryID from Categories where name = 'Dog'), 105, 3, null, 'Playful', 1,
+--0,'Male', null, null
+--);
+--INSERT INTO Animals VALUES(
+--'Chloe', (select CategoryID from Categories where name = 'Dog'), 40, 14, null, 'Playful', 1,
+--1, 'Female', null, null
+--);
+--INSERT INTO Animals VALUES(
+--'Reggie', (select CategoryID from Categories where name = 'Dog'), 15, 1, null, 'Playful', 1,
+--1, 'Male', null, null
+--);
+
+--=======  Cats  ==========================================================================
+--INSERT INTO Animals VALUES (
+--'Bobby George', (select CategoryID from Categories where Name = 'Cat'), 9, 3, null, 'Playful', 1,
+--1, 'Male', null, null
+--);
+--INSERT INTO Animals VALUES (
+--'Puff', (select CategoryID from Categories where Name = 'Cat'), 12, 13, null, 'Calm', 1,
+--1, 'Male', null, null
+--);
+--INSERT INTO Animals VALUES (
+--'Fonzie', (select CategoryID from Categories where Name = 'Cat'), 9, 4, null, 'Friendly', 1,
+--1, 'Male', null, null
+--);
+--INSERT INTO Animals VALUES (
+--'Dolly', (select CategoryID from Categories where Name = 'Cat'), 8, 6, null, 'Friendly', 1,
+--1, 'Female', null, null
+--);
+--INSERT INTO Animals VALUES (
+--'Pepper', (select CategoryID from Categories where Name = 'Cat'), 7, 8, null, 'Aloof', 1,
+--1, 'Female', null, null
+--);
+
+--=======  Rodents  ==========================================================================
+--INSERT INTO Animals VALUES(
+--'Twitch', (select CategoryID from Categories where name = 'Rodent'), 0, 1, null, 'Playful', 1,
+--1,'Male', null, null
+--);
+--INSERT INTO Animals VALUES(
+--'Paco', (select CategoryID from Categories where name = 'Rodent'), 0, 0, null, 'Playful', 1,
+--1,'Male', null, null
+--);
+--INSERT INTO Animals VALUES(
+--'Fuzzy', (select CategoryID from Categories where name = 'Rodent'), 0, 0, null, 'Playful', 1,
+--1,'Male', null, null
+--);
+--INSERT INTO Animals VALUES(
+--'Frizzy', (select CategoryID from Categories where name = 'Rodent'), 0, 0, null, 'Playful', 1,
+--1,'Female', null, null
+--);
+--INSERT INTO Animals VALUES(
+--'Bling', (select CategoryID from Categories where name = 'Rodent'), 0, 2, null, 'Playful', 1,
+--1,'Female', null, null
+--);
+
+--=======  Birds  ==========================================================================
+--INSERT INTO Animals VALUES(
+--'Polly', (select CategoryID from Categories where name = 'Bird'), 2, 2, null, 'Talkative', 1,
+--1,'Female', null, null
+--);
+--INSERT INTO Animals VALUES(
+--'Beauty', (select CategoryID from Categories where name = 'Bird'), 4, 2, null, 'Quiet', 1,
+--0,'Female', null, null
+--);
+--INSERT INTO Animals VALUES(
+--'Scurvy', (select CategoryID from Categories where name = 'Bird'), 3, 2, null, 'Quiet', 1,
+--1,'Male', null, null
+--);
+--INSERT INTO Animals VALUES(
+--'Curvy', (select CategoryID from Categories where name = 'Bird'), 3, 2, null, 'Talkative', 1,
+--1,'Female', null, null
+--);
+--INSERT INTO Animals VALUES(
+--'Crackers', (select CategoryID from Categories where name = 'Bird'), 2, 2, null, 'Talkative', 1,
+--1,'Male', null, null
+--);
+
+--=======  Reptile  ==========================================================================
+--INSERT INTO Animals VALUES(
+--'Lizzy the Lizard', (select CategoryID from Categories where name = 'Reptile'), 4, 2, null, 'Friendly', 1,
+--0,'Female', null, null
+--);
+--INSERT INTO Animals VALUES(
+--'Hissy the Snake', (select CategoryID from Categories where name = 'Reptile'), 3, 4, null, 'Friendly', 1,
+--0,'Female', null, null
+--);
+--INSERT INTO Animals VALUES(
+--'Geico the Gecko', (select CategoryID from Categories where name = 'Reptile'), 0, 2, null, 'Friendly', 1,
+--0,'Male', null, null
+--);
+--INSERT INTO Animals VALUES(
+--'Billy', (select CategoryID from Categories where name = 'Reptile'), 1, 2, null, 'Friendly', 1,
+--0,'Male', null, null
+--);
+--INSERT INTO Animals VALUES(
+--'Anna the Anaconda', (select CategoryID from Categories where name = 'Reptile'), 4, 2, null, 'Friendly', 1,
+--0,'Female', null, null
+--);
+
+

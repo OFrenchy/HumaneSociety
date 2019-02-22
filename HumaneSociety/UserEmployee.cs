@@ -97,7 +97,7 @@ namespace HumaneSociety
         private void CheckAnimalStatus()
         {
             Console.Clear();            
-            var animals = Query.SearchForAnimalByMultipleTraits().ToList();
+            var animals = Query.SearchForAnimalByMulitpleTraits().ToList();
             if(animals.Count > 1)
             {
                 UserInterface.DisplayUserOptions("Several animals found");
@@ -223,7 +223,7 @@ namespace HumaneSociety
 
         private void RemoveAnimal()
         {            
-            var animals = Query.SearchForAnimalByMultipleTraits().ToList();
+            var animals = Query.SearchForAnimalByMulitpleTraits().ToList();
             if (animals.Count > 1)
             {
                 UserInterface.DisplayUserOptions("Several animals found please refine your search.");
@@ -269,6 +269,11 @@ namespace HumaneSociety
             {
                 Console.Clear();
                 employee = Query.EmployeeLogin(userName, password);
+                //TODO - check if null
+                //if (employee == null)
+                //{
+                    LogInPreExistingUser();
+                //}
                 UserInterface.DisplayUserOptions("Login successfull. Welcome.");
             }
             catch
@@ -293,9 +298,11 @@ namespace HumaneSociety
                 UserInterface.DisplayUserOptions("Employee not found please contact your administrator");
                 PointOfEntry.Run();
             }
-            if (employee.Password != null)
+            Console.WriteLine();
+            if (employee != null && employee.Password != null)
             {
                 UserInterface.DisplayUserOptions("User already in use please log in or contact your administrator");
+                //TODO - check if we want to login here 
                 LogIn();
                 return;
             }

@@ -35,6 +35,7 @@ namespace HumaneSociety
         }
         protected virtual void LogInPreExistingUser()
         {
+            //TODO
 
         }
 
