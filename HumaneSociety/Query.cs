@@ -8,6 +8,7 @@ namespace HumaneSociety
 {
     public static class Query
     {
+        
         // TODO - // "create" "update"  "read"  "delete"
         internal static void RunEmployeeQueries(Employee employee, string action) 
         {
@@ -22,12 +23,32 @@ namespace HumaneSociety
 
             return animal;
         }
+        internal static List<AnimalShot> GetShots(Animal animal)
+        {
+            //TODO - fill this in
+            //AnimalShot
+            List<AnimalShot> animalShots  = new List<AnimalShot>();
+
+            return animalShots;
+        }
         internal static Room GetRoom(int AnimalId)
         {
             // TODO - fill this in
             Room room = new Room();
 
             return room;
+        }
+        internal static int GetCategoryId()
+        {
+            // TODO
+
+            return 0;
+        }
+
+        internal static void RemoveAnimal(Animal animal)
+        {
+            //TODO
+
         }
         internal static void Adopt(Animal animal, Client client)
         {
@@ -44,12 +65,29 @@ namespace HumaneSociety
         internal static List<Adoption> GetPendingAdoptions()
         {
             HumaneSocietyDataContext db = new HumaneSocietyDataContext();
-
+            // TODO - status pending??  
             List<Adoption> pendingAdoptions = db.Adoptions.Where(a => a.ApprovalStatus == "pending").ToList();
-
             return pendingAdoptions;
         }
-
+        internal static void UpdateAdoption(bool approve, Adoption adoption)
+        {
+            HumaneSocietyDataContext db = new HumaneSocietyDataContext();
+            // TODO - status approved ??  
+            adoption.ApprovalStatus =  approve ? "approved" : "denied";
+            
+            // TODO - how do you update???
+            var dbAdoption = db.Adoptions.Where(a => a.AdoptionId == adoption.AdoptionId);  //.Select(a => a.ApprovalStatus) = approve ? "approved" : "disapproved";
+            
+            db.SubmitChanges();
+        }
+        internal static void UpdateShot(string blahblah , Animal animal)
+        {
+            //TODO 
+        }
+        internal static void EnterAnimalUpdate(Animal animal, Dictionary<int, string> updates)
+        {
+            // TODO
+        }
         internal static List<USState> GetStates()
         {
             HumaneSocietyDataContext  db = new HumaneSocietyDataContext();
@@ -63,7 +101,7 @@ namespace HumaneSociety
         {
             HumaneSocietyDataContext db = new HumaneSocietyDataContext();
 
-            Client client = db.Clients.Where(c => c.Username == userName && c.Password == password).Single();
+            Client client = db.Clients.Where(c => c.UserName == userName && c.Password == password).Single();
             //was "c.Username"
             return client;
         }
