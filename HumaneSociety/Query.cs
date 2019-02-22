@@ -22,6 +22,13 @@ namespace HumaneSociety
 
             return animal;
         }
+        internal static Room GetRoom(int AnimalId)
+        {
+            // TODO - fill this in
+            Room room = new Room();
+
+            return room;
+        }
         internal static void Adopt(Animal animal, Client client)
         {
             // TODO - fill this in
@@ -47,8 +54,8 @@ namespace HumaneSociety
         {
             HumaneSocietyDataContext db = new HumaneSocietyDataContext();
 
-            Client client = db.Clients.Where(c => c.Username == userName && c.Password == password).Single();
-
+            Client client = db.Clients.Where(c => c.UserName == userName && c.Password == password).Single();
+            //was "c.Username"
             return client;
         }
 
