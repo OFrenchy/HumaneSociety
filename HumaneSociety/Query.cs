@@ -20,16 +20,16 @@ namespace HumaneSociety
                     db.SubmitChanges();
                     break;
                 case "read":
-                    db.Employees.InsertOnSubmit(employee);
-                    db.SubmitChanges();
+                    //db.Employees.InsertOnSubmit(employee);
+                    //db.SubmitChanges();
                     break;
                 case "update":
-                    db.Employees.InsertOnSubmit(employee);
-                    db.SubmitChanges();
+                    //db.Employees.InsertOnSubmit(employee);
+                    //db.SubmitChanges();
                     break;
                 case "delete":
-                    db.Employees.InsertOnSubmit(employee);
-                    db.SubmitChanges();
+                    //db.Employees.InsertOnSubmit(employee);
+                    //db.SubmitChanges();
                     break;
                 //default:
                 //    Console.WriteLine("");
@@ -39,8 +39,7 @@ namespace HumaneSociety
 
             // this is for create
             //Employee employeeFromDb = db.Employees.Where(e => e.EmployeeId == employee.EmployeeId).FirstOrDefault();
-            db.Employees.InsertOnSubmit(employee);
-            db.SubmitChanges();
+            
         }
         internal static Animal GetAnimalByID(int ID)
         {
