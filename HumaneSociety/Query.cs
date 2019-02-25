@@ -13,7 +13,28 @@ namespace HumaneSociety
         internal static void RunEmployeeQueries(Employee employee, string action) 
         {
             HumaneSocietyDataContext db = new HumaneSocietyDataContext();
-            
+            switch (action)
+            {
+                case "create":
+                    db.Employees.InsertOnSubmit(employee);
+                    db.SubmitChanges();
+                    break;
+                case "read":
+                    db.Employees.InsertOnSubmit(employee);
+                    db.SubmitChanges();
+                    break;
+                case "update":
+                    db.Employees.InsertOnSubmit(employee);
+                    db.SubmitChanges();
+                    break;
+                case "delete":
+                    db.Employees.InsertOnSubmit(employee);
+                    db.SubmitChanges();
+                    break;
+                //default:
+                //    Console.WriteLine("");
+                //    break;
+            }
 
 
             // this is for create
@@ -28,7 +49,6 @@ namespace HumaneSociety
 
             return animal;
         }
-<<<<<<< HEAD
         internal static List<AnimalShot> GetShots(Animal animal)
         {
             //TODO - fill this in
@@ -36,14 +56,6 @@ namespace HumaneSociety
             List<AnimalShot> animalshots = new List<AnimalShot>();
 
             return animalshots;
-=======
-        internal static List<AnimalShot> GetShots(Animal animal)
-        {
-            //TODO - fill this in
-            //AnimalShot
-            List<AnimalShot> animalshots = new List<AnimalShot>();
-            return animalshots;
->>>>>>> bddeef86a44c9c6c3ac2e029b876013ee0e495c7
         }
 
         internal static List<USState> GetStates()
