@@ -275,6 +275,10 @@ namespace HumaneSociety
                     LogInPreExistingUser();
                 //}
                 UserInterface.DisplayUserOptions("Login successfull. Welcome.");
+
+                ///TODO - add a bool userLoggedIn here?  to stop admin from being asked what is your username & password???
+                Console.WriteLine();
+
             }
             catch
             {

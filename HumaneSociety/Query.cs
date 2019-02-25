@@ -23,10 +23,14 @@ namespace HumaneSociety
         }
         internal static Animal GetAnimalByID(int ID)
         {
-            //TODO - fill this in
-            Animal animal = null;
+            HumaneSocietyDataContext db = new HumaneSocietyDataContext();
 
-            return animal;
+            //TODO - fill this in
+            //Animal animal = null;
+            //animal.AnimalId = ID;
+
+            return db.Animals.Where(a => a.AnimalId == ID).First() ;
+            //return animal;
         }
         internal static List<AnimalShot> GetShots(Animal animal)
         {
@@ -222,10 +226,7 @@ namespace HumaneSociety
         internal static Employee EmployeeLogin(string userName, string password)
         {
             HumaneSocietyDataContext  db = new HumaneSocietyDataContext();
-
             Employee employeeFromDb = db.Employees.Where(e => e.UserName == userName && e.Password == password).FirstOrDefault();
-
-            //return employeeFromDb;
             if (employeeFromDb == null)
             {
                 throw new NullReferenceException();
@@ -239,22 +240,17 @@ namespace HumaneSociety
         internal static bool CheckEmployeeUserNameExist(string userName)
         {
             HumaneSocietyDataContext  db = new HumaneSocietyDataContext();
-
             Employee employeeWithUserName = db.Employees.Where(e => e.UserName == userName).FirstOrDefault();
-
-            return employeeWithUserName == null;
+            return employeeWithUserName != null;
         }
 
         internal static void AddUsernameAndPassword(Employee employee)
         {
             HumaneSocietyDataContext  db = new HumaneSocietyDataContext();
-
             Employee employeeFromDb = db.Employees.Where(e => e.EmployeeId == employee.EmployeeId).FirstOrDefault();
-            //db.Employees.InsertOnSubmit(employee);
-            //db.SubmitChanges();
             employeeFromDb.UserName = employee.UserName;
             employeeFromDb.Password = employee.Password;
-
+            db.SubmitChanges();
         }
     }
 }
