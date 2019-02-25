@@ -20,8 +20,8 @@ namespace HumaneSociety
                     db.SubmitChanges();
                     break;
                 case "read":
-                    //db.Employees.InsertOnSubmit(employee);
-                    //db.SubmitChanges();
+                    employee = db.Employees.Where(e => e.EmployeeNumber == employee.EmployeeNumber).First();
+                    UserInterface.DisplayEmployeeInfo(employee);
                     break;
                 case "update":
                     //db.Employees.InsertOnSubmit(employee);
