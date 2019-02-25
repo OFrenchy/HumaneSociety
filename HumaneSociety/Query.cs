@@ -23,6 +23,7 @@ namespace HumaneSociety
             //TODO - fill this in
             //AnimalShot
             List<AnimalShot> animalshots = new List<AnimalShot>();
+
             return animalshots;
         }
 
@@ -97,6 +98,7 @@ namespace HumaneSociety
 
         internal static Client GetClient(string userName, string password)
         {
+            //TODO
             HumaneSocietyDataContext db = new HumaneSocietyDataContext();
 
             Client client = db.Clients.Where(c => c.UserName == userName && c.Password == password).Single();

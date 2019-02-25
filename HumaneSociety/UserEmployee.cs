@@ -269,6 +269,10 @@ namespace HumaneSociety
             {
                 Console.Clear();
                 employee = Query.EmployeeLogin(userName, password);
+                //if(employee == null)
+                //{
+                //    LogInPreExistingUser();
+                //}
                 UserInterface.DisplayUserOptions("Login successfull. Welcome.");
             }
             catch
