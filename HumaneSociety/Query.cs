@@ -13,13 +13,33 @@ namespace HumaneSociety
         internal static void RunEmployeeQueries(Employee employee, string action) 
         {
             HumaneSocietyDataContext db = new HumaneSocietyDataContext();
-            
+            switch (action)
+            {
+                case "create":
+                    db.Employees.InsertOnSubmit(employee);
+                    db.SubmitChanges();
+                    break;
+                case "read":
+                    //db.Employees.InsertOnSubmit(employee);
+                    //db.SubmitChanges();
+                    break;
+                case "update":
+                    //db.Employees.InsertOnSubmit(employee);
+                    //db.SubmitChanges();
+                    break;
+                case "delete":
+                    //db.Employees.InsertOnSubmit(employee);
+                    //db.SubmitChanges();
+                    break;
+                //default:
+                //    Console.WriteLine("");
+                //    break;
+            }
 
 
             // this is for create
             //Employee employeeFromDb = db.Employees.Where(e => e.EmployeeId == employee.EmployeeId).FirstOrDefault();
-            db.Employees.InsertOnSubmit(employee);
-            db.SubmitChanges();
+            
         }
         internal static Animal GetAnimalByID(int ID)
         {
@@ -37,6 +57,7 @@ namespace HumaneSociety
             //TODO - fill this in
             //AnimalShot
             List<AnimalShot> animalshots = new List<AnimalShot>();
+
             return animalshots;
         }
 
@@ -112,6 +133,7 @@ namespace HumaneSociety
 
         internal static Client GetClient(string userName, string password)
         {
+            //TODO
             HumaneSocietyDataContext db = new HumaneSocietyDataContext();
 
             Client client = db.Clients.Where(c => c.UserName == userName && c.Password == password).Single();
