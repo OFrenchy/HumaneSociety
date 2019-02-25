@@ -20,12 +20,17 @@ namespace HumaneSociety
                     db.SubmitChanges();
                     break;
                 case "read":
-                    //db.Employees.InsertOnSubmit(employee);
-                    //db.SubmitChanges();
+                    employee = db.Employees.Where(e => e.EmployeeNumber == employee.EmployeeNumber).First();
+                    UserInterface.DisplayEmployeeInfo(employee);
                     break;
                 case "update":
-                    //db.Employees.InsertOnSubmit(employee);
-                    //db.SubmitChanges();
+                    UserInterface.DisplayUserOptions("Enter your first name.");
+                    string firstName = UserInterface.GetUserInput();
+                    UserInterface.DisplayUserOptions("Enter your last name.");
+                    string lastName = UserInterface.GetUserInput();
+
+                    employee = db.Employees.Where(e => e.FirstName == firstName && e.LastName == lastName).First();
+                    UserInterface.DisplayEmployeeInfo(employee);
                     break;
                 case "delete":
                     //db.Employees.InsertOnSubmit(employee);
