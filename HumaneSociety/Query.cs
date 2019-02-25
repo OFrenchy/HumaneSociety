@@ -8,16 +8,27 @@ namespace HumaneSociety
 {
     public static class Query
     {
-        internal static void RunEmployeeQueries(Employee employee, string action)
+        
+        // TODO - // "create" "update"  "read"  "delete"
+        internal static void RunEmployeeQueries(Employee employee, string action) 
         {
+            HumaneSocietyDataContext db = new HumaneSocietyDataContext();
+            
 
+
+            // this is for create
+            //Employee employeeFromDb = db.Employees.Where(e => e.EmployeeId == employee.EmployeeId).FirstOrDefault();
+            db.Employees.InsertOnSubmit(employee);
+            db.SubmitChanges();
         }
         internal static Animal GetAnimalByID(int ID)
         {
+            //TODO - fill this in
             Animal animal = null;
 
             return animal;
         }
+<<<<<<< HEAD
         internal static List<AnimalShot> GetShots(Animal animal)
         {
             //TODO - fill this in
@@ -25,6 +36,14 @@ namespace HumaneSociety
             List<AnimalShot> animalshots = new List<AnimalShot>();
 
             return animalshots;
+=======
+        internal static List<AnimalShot> GetShots(Animal animal)
+        {
+            //TODO - fill this in
+            //AnimalShot
+            List<AnimalShot> animalshots = new List<AnimalShot>();
+            return animalshots;
+>>>>>>> bddeef86a44c9c6c3ac2e029b876013ee0e495c7
         }
 
         internal static List<USState> GetStates()
@@ -58,8 +77,7 @@ namespace HumaneSociety
         }
         internal static void Adopt(Animal animal, Client client)
         {
-
-
+            //TODO
         }
         internal static void AddAnimal(Animal animal)
         {
@@ -67,7 +85,9 @@ namespace HumaneSociety
         }
         internal static List<Animal> SearchForAnimalByMulitpleTraits()
         {
+            //TODO
             List<Animal> animalsfound = new List<Animal>();
+
             return animalsfound;
         }
         internal static List<Adoption> GetPendingAdoptions()
@@ -200,14 +220,14 @@ namespace HumaneSociety
 
             Employee employeeFromDb = db.Employees.Where(e => e.Email == email && e.EmployeeNumber == employeeNumber).FirstOrDefault();
 
-            if(employeeFromDb == null)
-            {
-                throw new NullReferenceException();            
-            }
-            else
-            {
+            //if(employeeFromDb == null)
+            //{
+            //    throw new NullReferenceException();            
+            //}
+            //else
+            //{
                 return employeeFromDb;
-            }            
+            //}            
         }
 
         internal static Employee EmployeeLogin(string userName, string password)
@@ -216,7 +236,15 @@ namespace HumaneSociety
 
             Employee employeeFromDb = db.Employees.Where(e => e.UserName == userName && e.Password == password).FirstOrDefault();
 
-            return employeeFromDb;
+            //return employeeFromDb;
+            if (employeeFromDb == null)
+            {
+                throw new NullReferenceException();
+            }
+            else
+            {
+                return employeeFromDb;
+            }
         }
 
         internal static bool CheckEmployeeUserNameExist(string userName)
@@ -233,11 +261,11 @@ namespace HumaneSociety
             HumaneSocietyDataContext  db = new HumaneSocietyDataContext();
 
             Employee employeeFromDb = db.Employees.Where(e => e.EmployeeId == employee.EmployeeId).FirstOrDefault();
-
+            //db.Employees.InsertOnSubmit(employee);
+            //db.SubmitChanges();
             employeeFromDb.UserName = employee.UserName;
             employeeFromDb.Password = employee.Password;
 
-            db.SubmitChanges();
         }
     }
 }
