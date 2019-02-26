@@ -278,11 +278,7 @@ namespace HumaneSociety
             {
                 Console.Clear();
                 employee = Query.EmployeeLogin(userName, password);
-<<<<<<< HEAD
-                if(employee == null)
-=======
                 if (employee == null)
->>>>>>> e8da373844291c8676d6f6f42d207bdb2806322c
                 {
                     LogInPreExistingUser();
                 }

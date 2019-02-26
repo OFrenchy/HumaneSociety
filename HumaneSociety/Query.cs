@@ -102,39 +102,14 @@ namespace HumaneSociety
         }
         internal static int GetCategoryId()
         {
-            //TODO
             HumaneSocietyDataContext db = new HumaneSocietyDataContext();
-<<<<<<< HEAD
-            //db.Categories.
-            return 0;
-=======
             Console.Clear();
-
             //foreach (var category in db.Categories) Console.WriteLine(category.CategoryId + " " + category.Name);
             List<string> categories = new List<string>();
             foreach (var category in db.Categories) categories.Add($"{category.CategoryId}  {category.Name}");
-            
             UserInterface.DisplayUserOptions(categories);
             UserInterface.DisplayUserOptions("Enter the number of the category you want: ");
             return UserInterface.GetIntegerData();
-
-            ////List<string> categories = new List<string>();
-            //var adoptions = db.Categories.ToList();
-            //if (adoptions.Count > 0)
-            //{
-            //    foreach (Adoption adoption in adoptions)
-            //    {
-            //        adoptionInfo.Add($"{counter}. {adoption.Client.FirstName} {adoption.Client.LastName}, {adoption.Animal.Name} {adoption.Animal.Category}");
-            //        counter++;
-            //    }
-            //    UserInterface.DisplayUserOptions(adoptionInfo);
-            //    UserInterface.DisplayUserOptions("Enter the number of the adoption you would like to approve");
-            //    int input = UserInterface.GetIntegerData();
-            //    ApproveAdoption(adoptions[input - 1]);
-            //}
-
-            //return 0;
->>>>>>> e8da373844291c8676d6f6f42d207bdb2806322c
         }
         internal static int GetDietPlanId()
         {
@@ -169,20 +144,12 @@ namespace HumaneSociety
 
         internal static void AddAnimal(Animal animal)
         {
-<<<<<<< HEAD
-            //TODO
-            HumaneSocietyDataContext db = new HumaneSocietyDataContext();
-            db.Animals.InsertOnSubmit(animal);
-            db.SubmitChanges();
-=======
             HumaneSocietyDataContext db = new HumaneSocietyDataContext();
             var room = db.Rooms.Where(r => r.AnimalId == null).First();
             db.Animals.InsertOnSubmit(animal);
             db.SubmitChanges();
             room.AnimalId = animal.AnimalId;
             db.SubmitChanges();
-            
->>>>>>> e8da373844291c8676d6f6f42d207bdb2806322c
         }
         internal static List<Animal> SearchForAnimalByMulitpleTraits()
         {
