@@ -62,20 +62,17 @@ namespace HumaneSociety
                 default:
                     return null;
                 //    Console.WriteLine("");
-                    break;
+                    //break;
             }
         }
 
-            internal static Animal GetAnimalByID(int ID)
+        internal static  Animal GetAnimalByID(int ID)
         {
             HumaneSocietyDataContext db = new HumaneSocietyDataContext();
-
-            //TODO - fill this in
-            //Animal animal = null;
-            //animal.AnimalId = ID;
-
-            return db.Animals.Where(a => a.AnimalId == ID).First() ;
-            //return animal;
+            //UserInterface.DisplayAnimals(Query.SearchForAnimalByMulitpleTraits());
+            Animal animal = new Animal();
+            animal.AnimalId = ID;
+            return db.Animals.Where(a => a.AnimalId == ID).First();
         }
         internal static List<AnimalShot> GetShots(Animal animal)
         {
