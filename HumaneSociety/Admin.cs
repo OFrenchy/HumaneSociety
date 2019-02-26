@@ -25,11 +25,7 @@ namespace HumaneSociety
         protected override void RunUserMenus()
         {
             Console.Clear();
-<<<<<<< HEAD
-            List<string> options = new List<string>() { "Admin log in successful.", "What would you like to do?", "1. Create new employee", "2. Delete employee", "3. Read employee info ", "4. Update emplyee info"};
-=======
             List<string> options = new List<string>() { "Admin log in successful.", "What would you like to do?", "1. Create new employee", "2. Delete employee", "3. Read employee info ", "4. Update employee info" };  //, "(type 1, 2, 3, 4,  create, read, update, or delete)
->>>>>>> 115a4750497d6fc0d81a6a1c1f2f71fd4b625a09
             UserInterface.DisplayUserOptions(options);
             string input = UserInterface.GetUserInput();
             RunInput(input);

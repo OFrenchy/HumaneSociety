@@ -77,6 +77,7 @@ namespace HumaneSociety
         private void ApplyForAdoption()
         {
             Console.Clear();
+            UserInterface.DisplayAnimals(Query.SearchForAnimalByMulitpleTraits());
             UserInterface.DisplayUserOptions("Please enter the ID of the animal you wish to adopt or type reset or exit");
             int iD = UserInterface.GetIntegerData();
             var animal = Query.GetAnimalByID(iD);
