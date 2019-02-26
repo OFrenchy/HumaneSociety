@@ -33,12 +33,11 @@ namespace HumaneSociety
                     UserInterface.DisplayEmployeeInfo(employee);
                     break;
                 case "delete":
-                    //db.Employees.InsertOnSubmit(employee);
-                    //db.SubmitChanges();
-                    break;
+                   // Admin.RemoveEmployee()
+                   // break;
                 //default:
                 //    Console.WriteLine("");
-                //    break;
+                    break;
             }
 
 
