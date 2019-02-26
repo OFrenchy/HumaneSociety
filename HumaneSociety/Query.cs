@@ -109,8 +109,19 @@ namespace HumaneSociety
         internal static Room GetRoom(int AnimalId)
         {
             // TODO - fill this in
-            Room room = new Room();
+            HumaneSocietyDataContext db = new HumaneSocietyDataContext();
+            Room room;
+            try
+            {
+                room = db.Rooms.Where(r => r.AnimalId == AnimalId).Single();
+            }
+            catch (Exception)
+            {
 
+                throw;
+            }
+            
+            // TODO - Do we need a try/catch?
             return room;
         }
         internal static int GetCategoryId()
@@ -138,7 +149,11 @@ namespace HumaneSociety
         internal static List<Animal> SearchForAnimalByMulitpleTraits()
         {
             //TODO
-            List<Animal> animalsfound = new List<Animal>();
+            HumaneSocietyDataContext db = new HumaneSocietyDataContext();
+
+            // TODO - add filtering?
+            //List<Animal> animalsfound = new List<Animal>();
+            List<Animal> animalsfound = db.Animals.ToList();
 
             return animalsfound;
         }
