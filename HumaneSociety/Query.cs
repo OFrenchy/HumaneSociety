@@ -84,9 +84,6 @@ namespace HumaneSociety
         internal static  Animal GetAnimalByID(int ID)
         {
             HumaneSocietyDataContext db = new HumaneSocietyDataContext();
-            //UserInterface.DisplayAnimals(Query.SearchForAnimalByMulitpleTraits());
-            Animal animal = new Animal();
-            animal.AnimalId = ID;
             return db.Animals.Where(a => a.AnimalId == ID).First();
         }
         internal static List<AnimalShot> GetShots(Animal animal)
@@ -127,6 +124,8 @@ namespace HumaneSociety
         internal static int GetCategoryId()
         {
             //TODO
+            HumaneSocietyDataContext db = new HumaneSocietyDataContext();
+            //db.Categories.
             return 0;
         }
         internal static int GetDietPlanId()
@@ -145,6 +144,9 @@ namespace HumaneSociety
         internal static void AddAnimal(Animal animal)
         {
             //TODO
+            HumaneSocietyDataContext db = new HumaneSocietyDataContext();
+            db.Animals.InsertOnSubmit(animal);
+            db.SubmitChanges();
         }
         internal static List<Animal> SearchForAnimalByMulitpleTraits()
         {

@@ -247,6 +247,9 @@ namespace HumaneSociety
         }
         private void AddAnimal()
         {
+            // add gender
+            // finnish category id
+            //finnish diet plan
             Console.Clear();
             Animal animal = new Animal();
             animal.CategoryId = Query.GetCategoryId();
@@ -270,10 +273,10 @@ namespace HumaneSociety
             {
                 Console.Clear();
                 employee = Query.EmployeeLogin(userName, password);
-                //if(employee == null)
-                //{
-                //    LogInPreExistingUser();
-                //}
+                if(employee == null)
+                {
+                    LogInPreExistingUser();
+                }
                 UserInterface.DisplayUserOptions("Login successfull. Welcome.");
 
                 ///TODO - add a bool userLoggedIn here?  to stop admin from being asked what is your username & password???
