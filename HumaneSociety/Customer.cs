@@ -259,6 +259,8 @@ namespace HumaneSociety
                 return false;
             }
         }
+
+        // copy?? from here to bottom ==============================================
         public void UpdateClientInfo()
         {
             List<string> options = new List<string>() { "What would you like to update? (Please enter number of option)", "1: Name", "2: Address", "3: Email", "4: Username", "5: Password", "6. Back" };
@@ -393,5 +395,6 @@ namespace HumaneSociety
                 Query.UpdateClient(client);
             }
         }
+        // to here // copy?? ==============================================
     }
 }

@@ -10,7 +10,7 @@ namespace HumaneSociety
     {
         
         // TODO - // "create" "update"  "read"  "delete"
-        internal static void RunEmployeeQueries(Employee employee, string action) 
+        internal static Employee RunEmployeeQueries(Employee employee, string action) 
         {
             HumaneSocietyDataContext db = new HumaneSocietyDataContext();
             switch (action)
@@ -18,25 +18,54 @@ namespace HumaneSociety
                 case "create":
                     db.Employees.InsertOnSubmit(employee);
                     db.SubmitChanges();
-                    break;
+                    return null;
+                    //break;
                 case "read":
-                    employee = db.Employees.Where(e => e.EmployeeNumber == employee.EmployeeNumber).First();
+                    if (employee.EmployeeNumber != null)
+                    {
+                        employee = db.Employees.Where(e => e.EmployeeNumber == employee.EmployeeNumber).First();
+                    }
+                    if (employee.EmployeeId != 0)
+                    {
+                        employee = db.Employees.Where(e => e.EmployeeId == employee.EmployeeId).First();
+                    }
                     UserInterface.DisplayEmployeeInfo(employee);
-                    break;
+                    Console.WriteLine("\nPress enter to continue:");
+                    Console.ReadLine();
+                    return employee;
+                    //break;
                 case "update":
-                    UserInterface.DisplayUserOptions("Enter your first name.");
-                    string firstName = UserInterface.GetUserInput();
-                    UserInterface.DisplayUserOptions("Enter your last name.");
-                    string lastName = UserInterface.GetUserInput();
+                    //employee = db.Employees.Where(e => e.EmployeeId == employee.EmployeeId).First();
+                    //employee.Email = "rick@casablanca.com";
 
-                    employee = db.Employees.Where(e => e.FirstName == firstName && e.LastName == lastName).First();
+                    Employee thisEmployee = db.Employees.Where(e => e.EmployeeId == employee.EmployeeId).Single();
+                    thisEmployee.LastName = employee.LastName;
+                    thisEmployee.FirstName = employee.FirstName;
+                    thisEmployee.EmployeeId = employee.EmployeeId;
+                    thisEmployee.UserName = employee.UserName;
+                    thisEmployee.Password = employee.Password;
+                    thisEmployee.Email = employee.Email;
+                    db.SubmitChanges();
+                    Console.Clear();
+                    Console.WriteLine("Updated:");
                     UserInterface.DisplayEmployeeInfo(employee);
-                    break;
+                    Console.WriteLine("\nPress enter to continue:");
+                    Console.ReadLine();
+                    return null;
+                    //break;
+                case "display": // display 
+                    Console.Clear();
+                    UserInterface.DisplayEmployees(db.Employees.OrderBy(e => e.LastName).ThenBy(e => e.FirstName));// DisplayEmployees
+                    return null;
+                    //break;
                 case "delete":
-                    //db.Employees.InsertOnSubmit(employee);
-                    //db.SubmitChanges();
-                    break;
-                //default:
+                    employee = db.Employees.Where(e => e.LastName == employee.LastName && e.EmployeeNumber == employee.EmployeeNumber).First();
+                    db.Employees.DeleteOnSubmit(employee);
+                    db.SubmitChanges();
+                    return null;
+                    //break;
+                default:
+                    return null;
                 //    Console.WriteLine("");
                 //    break;
             }
@@ -46,7 +75,10 @@ namespace HumaneSociety
             //Employee employeeFromDb = db.Employees.Where(e => e.EmployeeId == employee.EmployeeId).FirstOrDefault();
             
         }
-        internal static Animal GetAnimalByID(int ID)
+        
+
+
+            internal static Animal GetAnimalByID(int ID)
         {
             HumaneSocietyDataContext db = new HumaneSocietyDataContext();
 

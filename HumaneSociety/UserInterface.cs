@@ -84,6 +84,8 @@ namespace HumaneSociety
             }
         }
 
+        
+
         internal static void DisplayAnimals(List<Animal> animals)
         {
             foreach(Animal animal in animals)
@@ -91,7 +93,15 @@ namespace HumaneSociety
                 Console.WriteLine(animal.AnimalId + " " + animal.Name + " " + animal.Category.Name);
             }
         }
-
+        internal static void DisplayEmployees(IOrderedQueryable<Employee> orderedQueryable)
+        {
+            Console.WriteLine("EmployeeId,  LastName, FirstName");
+            foreach (Employee employee in orderedQueryable)
+            {
+                Console.WriteLine(employee.EmployeeId + " " + employee.LastName + " " + employee.FirstName);// + " " + employee.EmployeeNumber + " " + employee.UserName + " " + employee.Email);
+            }
+        }
+        
         internal static int GetIntegerData()
         {
             try
@@ -130,9 +140,9 @@ namespace HumaneSociety
         }
         internal static void DisplayEmployeeInfo(Employee employee)
         {
-            List<string> info = new List<string>() { "First Name: " + employee.FirstName, "Last Name: " + employee.LastName, "Email: " + employee.Email, "User Name: " + employee.UserName, "Employee Number: " + employee.EmployeeNumber.ToString() };
+            List<string> info = new List<string>() { "First Name: " + employee.FirstName, "Last Name: " + employee.LastName, "Email: " + employee.Email, "User Name: " + employee.UserName, "Password: " + employee.Password, "Employee Number: " + employee.EmployeeNumber.ToString() };
             DisplayUserOptions(info);
-            Console.ReadLine();
+            // Console.ReadLine();
         }
         public static void DisplayAnimalInfo(Animal animal)
         {
