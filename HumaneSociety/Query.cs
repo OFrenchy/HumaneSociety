@@ -61,8 +61,6 @@ namespace HumaneSociety
                     //break;
                 default:
                     return null;
-                //    Console.WriteLine("");
-                    //break;
             }
         }
 
@@ -76,10 +74,8 @@ namespace HumaneSociety
         }
         internal static List<AnimalShot> GetShots(Animal animal)
         {
-            //TODO - fill this in
-            //AnimalShot
-            List<AnimalShot> animalshots = new List<AnimalShot>();
-
+            HumaneSocietyDataContext db = new HumaneSocietyDataContext();
+            List<AnimalShot> animalshots = db.AnimalShots.Where(a => a.AnimalId == animal.AnimalId).ToList() ;
             return animalshots;
         }
 
