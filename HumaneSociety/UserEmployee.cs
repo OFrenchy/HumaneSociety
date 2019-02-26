@@ -248,6 +248,11 @@ namespace HumaneSociety
         private void AddAnimal()
         {
             Console.Clear();
+            if (!Query.Vacancy())
+            {
+                Console.WriteLine("There are no open rooms;  we cannot accept another animal - sorry.\nPress enter to continue:");
+                Console.ReadLine();
+            }
             Animal animal = new Animal();
             animal.CategoryId = Query.GetCategoryId();
             animal.Name = UserInterface.GetStringData("name", "the animal's");
@@ -270,10 +275,10 @@ namespace HumaneSociety
             {
                 Console.Clear();
                 employee = Query.EmployeeLogin(userName, password);
-                //if(employee == null)
-                //{
-                //    LogInPreExistingUser();
-                //}
+                if (employee == null)
+                {
+                    LogInPreExistingUser();
+                }
                 UserInterface.DisplayUserOptions("Login successfull. Welcome.");
 
                 ///TODO - add a bool userLoggedIn here?  to stop admin from being asked what is your username & password???
