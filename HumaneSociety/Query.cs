@@ -8,8 +8,6 @@ namespace HumaneSociety
 {
     public static class Query
     {
-        
-        // TODO - // "create" "update"  "read"  "delete"
         internal static Employee RunEmployeeQueries(Employee employee, string action) 
         {
             HumaneSocietyDataContext db = new HumaneSocietyDataContext();
@@ -35,9 +33,6 @@ namespace HumaneSociety
                     return employee;
                     //break;
                 case "update":
-                    //employee = db.Employees.Where(e => e.EmployeeId == employee.EmployeeId).First();
-                    //employee.Email = "rick@casablanca.com";
-
                     Employee thisEmployee = db.Employees.Where(e => e.EmployeeId == employee.EmployeeId).Single();
                     thisEmployee.LastName = employee.LastName;
                     thisEmployee.FirstName = employee.FirstName;
@@ -69,17 +64,7 @@ namespace HumaneSociety
                 //    Console.WriteLine("");
                     //break;
             }
-
-
-            // this is for create
-            //Employee employeeFromDb = db.Employees.Where(e => e.EmployeeId == employee.EmployeeId).FirstOrDefault();
-            
         }
-
-        //internal static object GetAnimalByID(int iD)
-        //{
-        //    throw new NotImplementedException();
-        //}
 
         internal static  Animal GetAnimalByID(int ID)
         {
@@ -114,24 +99,62 @@ namespace HumaneSociety
             }
             catch (Exception)
             {
-
+                // TODO - Do we need a try/catch?
                 throw;
             }
-            
-            // TODO - Do we need a try/catch?
             return room;
         }
         internal static int GetCategoryId()
         {
             //TODO
             HumaneSocietyDataContext db = new HumaneSocietyDataContext();
+<<<<<<< HEAD
             //db.Categories.
             return 0;
+=======
+            Console.Clear();
+
+            //foreach (var category in db.Categories) Console.WriteLine(category.CategoryId + " " + category.Name);
+            List<string> categories = new List<string>();
+            foreach (var category in db.Categories) categories.Add($"{category.CategoryId}  {category.Name}");
+            
+            UserInterface.DisplayUserOptions(categories);
+            UserInterface.DisplayUserOptions("Enter the number of the category you want: ");
+            return UserInterface.GetIntegerData();
+
+            ////List<string> categories = new List<string>();
+            //var adoptions = db.Categories.ToList();
+            //if (adoptions.Count > 0)
+            //{
+            //    foreach (Adoption adoption in adoptions)
+            //    {
+            //        adoptionInfo.Add($"{counter}. {adoption.Client.FirstName} {adoption.Client.LastName}, {adoption.Animal.Name} {adoption.Animal.Category}");
+            //        counter++;
+            //    }
+            //    UserInterface.DisplayUserOptions(adoptionInfo);
+            //    UserInterface.DisplayUserOptions("Enter the number of the adoption you would like to approve");
+            //    int input = UserInterface.GetIntegerData();
+            //    ApproveAdoption(adoptions[input - 1]);
+            //}
+
+            //return 0;
+>>>>>>> e8da373844291c8676d6f6f42d207bdb2806322c
         }
         internal static int GetDietPlanId()
         {
             //TODO
-            return 0;
+            HumaneSocietyDataContext db = new HumaneSocietyDataContext();
+            Console.Clear();
+
+            //foreach (var category in db.Categories) Console.WriteLine(category.CategoryId + " " + category.Name);
+            List<string> dietPlans = new List<string>();
+            foreach (var dietPlan in db.DietPlans) dietPlans.Add($"{dietPlan.DietPlanId} {dietPlan.Name} {dietPlan.FoodType}, {dietPlan.FoodAmountInCups} cup(s)");
+
+            UserInterface.DisplayUserOptions(dietPlans);
+            UserInterface.DisplayUserOptions("Enter the number of the diet plan you want: ");
+            return UserInterface.GetIntegerData();
+
+            
         }
         internal static void RemoveAnimal(Animal animal)
         {
@@ -141,12 +164,29 @@ namespace HumaneSociety
         {
             //TODO
         }
+        internal static bool Vacancy()
+        {
+            HumaneSocietyDataContext db = new HumaneSocietyDataContext();
+            var room = db.Rooms.Where(r => r.AnimalId == null).First();
+            if (room == null) return false; return true;
+        }
+
         internal static void AddAnimal(Animal animal)
         {
+<<<<<<< HEAD
             //TODO
             HumaneSocietyDataContext db = new HumaneSocietyDataContext();
             db.Animals.InsertOnSubmit(animal);
             db.SubmitChanges();
+=======
+            HumaneSocietyDataContext db = new HumaneSocietyDataContext();
+            var room = db.Rooms.Where(r => r.AnimalId == null).First();
+            db.Animals.InsertOnSubmit(animal);
+            db.SubmitChanges();
+            room.AnimalId = animal.AnimalId;
+            db.SubmitChanges();
+            
+>>>>>>> e8da373844291c8676d6f6f42d207bdb2806322c
         }
         internal static List<Animal> SearchForAnimalByMulitpleTraits()
         {
@@ -155,6 +195,10 @@ namespace HumaneSociety
 
             // TODO - add filtering?
             //List<Animal> animalsfound = new List<Animal>();
+            Dictionary<int, string> searchCriteria;
+            searchCriteria = UserInterface.GetAnimalCriteria();
+
+
             List<Animal> animalsfound = db.Animals.ToList();
 
             return animalsfound;
@@ -286,17 +330,16 @@ namespace HumaneSociety
         internal static Employee RetrieveEmployeeUser(string email, int employeeNumber)
         {
             HumaneSocietyDataContext  db = new HumaneSocietyDataContext();
-
             Employee employeeFromDb = db.Employees.Where(e => e.Email == email && e.EmployeeNumber == employeeNumber).FirstOrDefault();
 
-            //if(employeeFromDb == null)
-            //{
-            //    throw new NullReferenceException();            
-            //}
-            //else
-            //{
+            if (employeeFromDb == null)
+            {
+                throw new NullReferenceException();
+            }
+            else
+            {
                 return employeeFromDb;
-            //}            
+            }
         }
 
         internal static Employee EmployeeLogin(string userName, string password)

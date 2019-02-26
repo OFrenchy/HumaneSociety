@@ -61,54 +61,25 @@ namespace HumaneSociety
 
         private void UpdateEmployee()
         {
-            //HumaneSocietyDataContext db = new HumaneSocietyDataContext();
-            //UserInterface.DisplayEmployees(db.Employees.OrderBy(e => e.LastName).ThenBy(e => e.FirstName)) ;// DisplayEmployees
-
             Query.RunEmployeeQueries(null,"display");
-
             Employee employee = new Employee();
             //employee.id = UserInterface.GetStringData("ID", "the employee's");
             employee.EmployeeId = int.Parse(UserInterface.GetStringData("employee ID to update", "the employee's"));
-
-
-            //employee.LastName = UserInterface.GetStringData("last name", "the employee's");
-            //// look up employee
-            //employee = db.Employees.Where(e => e.FirstName == employee.FirstName && e.LastName == employee.LastName).First();
-
-            //employee.EmployeeNumber = int.Parse(UserInterface.GetStringData("employee number", "the employee's"));
             employee = Query.RunEmployeeQueries(employee, "read");
-
-            //Console.WriteLine(employee.UserName);
-            //Console.Clear();
             Console.WriteLine("Updating user:\n");
-            //UserInterface.DisplayEmployeeInfo(employee);
+
             string temp = UserInterface.GetStringData("last name, or enter to accept", "the employee's");
             if (temp != "") employee.LastName = temp;
             temp = UserInterface.GetStringData("first name, or enter to accept", "the employee's");
             if (temp != "") employee.FirstName = temp;
             temp = UserInterface.GetStringData("employee number, or enter to accept", "the employee's");
             if (temp != "") employee.EmployeeNumber = int.Parse(temp);
-
             temp = UserInterface.GetStringData("email, or enter to accept", "the employee's");
             if (temp != "") employee.Email = temp;
-
             temp = UserInterface.GetStringData("username, or enter to accept", "the employee's");
             if (temp != "") employee.UserName = temp;
-
             temp = UserInterface.GetStringData("password, or enter to accept", "the employee's");
             if (temp != "") employee.Password = temp;
-
-            //employee.EmployeeNumber = input == null ? employee.EmployeeNumber : int.Parse(input);
-            ////GetIntegerData
-
-            ////employee.EmployeeId =     int.Parse(input? ?? employee.EmployeeNumber);
-            ////employee.EmployeeId = int.Parse(UserInterface.GetStringData("employee number, or enter to accept", "the employee's") ?? employee.EmployeeNumber);
-            //employee.Email = UserInterface.GetStringData("email, or enter to accept", "the employee's") ?? employee.Email;
-
-            //employee.UserName = UserInterface.GetStringData("username, or enter to accept", "the employee's") ?? employee.UserName;
-            //employee.Password = UserInterface.GetStringData("password, or enter to accept", "the employee's") ?? employee.Password;
-
-
 
             try
             {
@@ -192,6 +163,5 @@ namespace HumaneSociety
                 return;
             }
         }
-
     }
 }

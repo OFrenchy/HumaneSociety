@@ -251,6 +251,11 @@ namespace HumaneSociety
             // finnish category id
             //finnish diet plan
             Console.Clear();
+            if (!Query.Vacancy())
+            {
+                Console.WriteLine("There are no open rooms;  we cannot accept another animal - sorry.\nPress enter to continue:");
+                Console.ReadLine();
+            }
             Animal animal = new Animal();
             animal.CategoryId = Query.GetCategoryId();
             animal.Name = UserInterface.GetStringData("name", "the animal's");
@@ -273,7 +278,11 @@ namespace HumaneSociety
             {
                 Console.Clear();
                 employee = Query.EmployeeLogin(userName, password);
+<<<<<<< HEAD
                 if(employee == null)
+=======
+                if (employee == null)
+>>>>>>> e8da373844291c8676d6f6f42d207bdb2806322c
                 {
                     LogInPreExistingUser();
                 }
