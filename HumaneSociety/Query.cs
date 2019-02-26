@@ -59,6 +59,11 @@ namespace HumaneSociety
                     return null;
                     //break;
                 case "delete":
+<<<<<<< HEAD
+                   // Admin.RemoveEmployee()
+                   // break;
+                //default:
+=======
                     employee = db.Employees.Where(e => e.LastName == employee.LastName && e.EmployeeNumber == employee.EmployeeNumber).First();
                     db.Employees.DeleteOnSubmit(employee);
                     db.SubmitChanges();
@@ -66,8 +71,9 @@ namespace HumaneSociety
                     //break;
                 default:
                     return null;
+>>>>>>> 115a4750497d6fc0d81a6a1c1f2f71fd4b625a09
                 //    Console.WriteLine("");
-                //    break;
+                    break;
             }
 
 
