@@ -67,9 +67,6 @@ namespace HumaneSociety
         internal static  Animal GetAnimalByID(int ID)
         {
             HumaneSocietyDataContext db = new HumaneSocietyDataContext();
-            //UserInterface.DisplayAnimals(Query.SearchForAnimalByMulitpleTraits());
-            Animal animal = new Animal();
-            animal.AnimalId = ID;
             return db.Animals.Where(a => a.AnimalId == ID).First();
         }
         internal static List<AnimalShot> GetShots(Animal animal)
@@ -107,6 +104,10 @@ namespace HumaneSociety
         {
             //TODO
             HumaneSocietyDataContext db = new HumaneSocietyDataContext();
+<<<<<<< HEAD
+            //db.Categories.
+            return 0;
+=======
             Console.Clear();
 
             //foreach (var category in db.Categories) Console.WriteLine(category.CategoryId + " " + category.Name);
@@ -133,6 +134,7 @@ namespace HumaneSociety
             //}
 
             //return 0;
+>>>>>>> e8da373844291c8676d6f6f42d207bdb2806322c
         }
         internal static int GetDietPlanId()
         {
@@ -167,6 +169,12 @@ namespace HumaneSociety
 
         internal static void AddAnimal(Animal animal)
         {
+<<<<<<< HEAD
+            //TODO
+            HumaneSocietyDataContext db = new HumaneSocietyDataContext();
+            db.Animals.InsertOnSubmit(animal);
+            db.SubmitChanges();
+=======
             HumaneSocietyDataContext db = new HumaneSocietyDataContext();
             var room = db.Rooms.Where(r => r.AnimalId == null).First();
             db.Animals.InsertOnSubmit(animal);
@@ -174,6 +182,7 @@ namespace HumaneSociety
             room.AnimalId = animal.AnimalId;
             db.SubmitChanges();
             
+>>>>>>> e8da373844291c8676d6f6f42d207bdb2806322c
         }
         internal static List<Animal> SearchForAnimalByMulitpleTraits()
         {
