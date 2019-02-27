@@ -129,7 +129,6 @@ namespace HumaneSociety
         }
         internal static void RemoveAnimal(Animal animal)
         {
-            //TODO
             HumaneSocietyDataContext db = new HumaneSocietyDataContext();
             animal = db.Animals.Where(a => a.AnimalId == animal.AnimalId).First();
             db.Animals.DeleteOnSubmit(animal);
