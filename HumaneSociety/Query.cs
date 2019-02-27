@@ -177,7 +177,7 @@ namespace HumaneSociety
                     case 1:
                         // lookup Dog's CategoryID
                         var categoryID = db.Categories.Where(c => c.Name == keyValuePair.Value).Select(c => c.CategoryId).First();
-                        animalsFound = animalsFound.Where(a => a.CategoryId == categoryID).ToList();// (db.Categories.Where(c => c.Name == keyValuePair.Value).Select(c => c.CategoryId).First()));
+                        animalsFound = animalsFound.Where(a => a.CategoryId == categoryID).ToList();
                         break;
                     case 2: // Name
                         animalsFound = animalsFound.Where(a => a.Name == keyValuePair.Value).ToList();

@@ -97,8 +97,9 @@ namespace HumaneSociety
             var animals = Query.SearchForAnimalByMulitpleTraits().ToList();
             if (animals.Count > 1)
             {
-                UserInterface.DisplayUserOptions("Several animals found");
+                UserInterface.DisplayUserOptions("Several animals found; you can further select by their ID.\nID, Name, Category");
                 UserInterface.DisplayAnimals(animals);
+                UserInterface.DisplayUserOptions("Press enter to continue.");
             }
             else if(animals.Count == 0)
             {
