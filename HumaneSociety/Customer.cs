@@ -87,7 +87,7 @@ namespace HumaneSociety
             if ((bool)UserInterface.GetBitData())
             {
                 Query.Adopt(animal, client);
-                UserInterface.DisplayUserOptions("Adoption request sent we will hold $75 adoption fee until processed");
+                UserInterface.DisplayUserOptions($"Adoption request sent we will hold ${UserInterface.AdoptionFee} adoption fee until processed");
             }
         }
 

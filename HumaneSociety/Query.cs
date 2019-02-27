@@ -210,10 +210,8 @@ namespace HumaneSociety
         internal static void UpdateAdoption(bool approve, Adoption adoption)
         {
             HumaneSocietyDataContext db = new HumaneSocietyDataContext();
-            //ToDO
-            adoption.ApprovalStatus = approve ? "approved" : "denied";
-            var dbAdoption = db.Adoptions.Where(a => a.AdoptionId == adoption.AdoptionId);
-
+            db.Adoptions.Where(a => a.AdoptionId == adoption.AdoptionId).First().ApprovalStatus = approve ? "approved" : "denied";
+            db.Animals.Where(a => a.AnimalId == adoption.AnimalId).First().AdoptionStatus = approve ? "approved" : "denied";
             db.SubmitChanges();
         }
         internal static List<AnimalShot> GetShots(Animal animal)
@@ -224,17 +222,27 @@ namespace HumaneSociety
         }
         internal static void UpdateShot(string blahblah, Animal animal)
         {
-            // used in UserEmployee.CheckShots(Animal animal)
+            animal.AnimalShots.Count();
             HumaneSocietyDataContext db = new HumaneSocietyDataContext();
-            //List<AnimalShot> animalshots = db.AnimalShots.Where(a => a.AnimalId == animal.AnimalId).ToList();
-
-            //animal.AnimalShots.Add();
-            
-
+            List<string> shots = new List<string>();
+            foreach (var thisShot in db.Shots) shots.Add($"{thisShot.ShotId}  {thisShot.Name}");
+            UserInterface.DisplayUserOptions("ID Shot Name");
+            UserInterface.DisplayUserOptions(shots);
+            UserInterface.DisplayUserOptions("Select ID of the shot you will administer:");
+            int shotId = UserInterface.GetIntegerData();
+            AnimalShot animalShot = new AnimalShot();
+            animalShot.ShotId = shotId;
+            animalShot.AnimalId = animal.AnimalId;
+            animalShot.DateReceived = DateTime.Now;
+            db.AnimalShots.InsertOnSubmit(animalShot);
+            db.SubmitChanges();
         }
         internal static void EnterAnimalUpdate(Animal animal, Dictionary<int, string> updates)
         {
             //TODO
+            //HumaneSocietyDataContext db = new HumaneSocietyDataContext();
+            //db.Animals.Where(a => a.AnimalId == animal.AnimalId).First();
+            //db.SubmitChanges();
         }
 
         internal static Client GetClient(string userName, string password)
