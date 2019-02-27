@@ -136,17 +136,14 @@ namespace HumaneSociety
         }
         internal static void Adopt(Animal animal, Client client)
         {
-            //TODO
             HumaneSocietyDataContext db = new HumaneSocietyDataContext();
             Adoption adoption = new Adoption();
             adoption.AdoptionId = adoption.AdoptionId;
             adoption.ClientId = client.ClientId;
             adoption.AnimalId = animal.AnimalId;
             adoption.ApprovalStatus = "pending";
-            adoption.AdoptionFee = 75;
+            adoption.AdoptionFee = UserInterface.AdoptionFee;
             adoption.PaymentCollected = true;
-            //add record to adoption table with client =
-            //adoption = db.Adoptions.Where(a => a.AdoptionId == animal.AnimalId).First();
             db.Adoptions.InsertOnSubmit(adoption);
             db.SubmitChanges();
         }
