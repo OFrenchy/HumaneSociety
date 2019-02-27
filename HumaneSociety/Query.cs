@@ -138,7 +138,7 @@ namespace HumaneSociety
         {
             HumaneSocietyDataContext db = new HumaneSocietyDataContext();
             Adoption adoption = new Adoption();
-            adoption.AdoptionId = adoption.AdoptionId;
+            //adoption.AdoptionId = adoption.AdoptionId;
             adoption.ClientId = client.ClientId;
             adoption.AnimalId = animal.AnimalId;
             adoption.ApprovalStatus = "pending";
@@ -241,12 +241,44 @@ namespace HumaneSociety
         }
         internal static void EnterAnimalUpdate(Animal animal, Dictionary<int, string> updates)
         {
-            //TODO
-            //HumaneSocietyDataContext db = new HumaneSocietyDataContext();
-            //db.Animals.Where(a => a.AnimalId == animal.AnimalId).First();
-            //db.SubmitChanges();
+            HumaneSocietyDataContext db = new HumaneSocietyDataContext();
+            var dbAnimal = db.Animals.Where(a => a.AnimalId == animal.AnimalId).First();
+            foreach (var keyValuePair in updates)
+            {   // searchCriteria [0]: {[1, Dog]}  [1]: {[9, True]}
+                switch (keyValuePair.Key)
+                {
+                    // "1. Category", "2. Name", "3. Age", "4. Demeanor", "5. Kid friendly", "6. Pet friendly", "7. Weight", "8. Gender", "9. Diet Plan"
+                    case 1:
+                        animal.CategoryId = Query.GetCategoryId();
+                        break;
+                    case 2: // Name
+                        dbAnimal.Name = UserInterface.GetStringData("name", "the animal's");
+                        break;
+                    case 3: // Age
+                        dbAnimal.Age = UserInterface.GetIntegerData("age", "the animal's");
+                        break;
+                    case 4: // Demeanor
+                        dbAnimal.Demeanor = UserInterface.GetStringData("demeanor", "the animal's");
+                        break;
+                    case 5: // Kid friendly
+                        dbAnimal.KidFriendly = UserInterface.GetBitData("the animal", "child friendly");
+                        break;
+                    case 6: // Pet friendly
+                        dbAnimal.PetFriendly = UserInterface.GetBitData("the animal", "pet friendly");
+                        break;
+                    case 7: // Weight
+                        dbAnimal.Weight = UserInterface.GetIntegerData("the animal", "the weight of the");
+                        break;
+                    case 8: // Gender
+                        dbAnimal.Gender = UserInterface.GetStringData("gender", "the animal's").ToLower();
+                        break;
+                    case 9: // Diet plan
+                        dbAnimal.DietPlanId = Query.GetDietPlanId();
+                        break;
+                }
+                db.SubmitChanges();
+            }
         }
-
         internal static Client GetClient(string userName, string password)
         {
             HumaneSocietyDataContext db = new HumaneSocietyDataContext();
