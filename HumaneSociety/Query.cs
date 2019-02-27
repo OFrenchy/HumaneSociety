@@ -97,7 +97,6 @@ namespace HumaneSociety
         {
             HumaneSocietyDataContext db = new HumaneSocietyDataContext();
             Console.Clear();
-            //foreach (var category in db.Categories) Console.WriteLine(category.CategoryId + " " + category.Name);
             List<string> categories = new List<string>();
             foreach (var category in db.Categories) categories.Add($"{category.CategoryId}  {category.Name}");
             UserInterface.DisplayUserOptions(categories);
@@ -106,19 +105,13 @@ namespace HumaneSociety
         }
         internal static int GetDietPlanId()
         {
-            //TODO
             HumaneSocietyDataContext db = new HumaneSocietyDataContext();
             Console.Clear();
-
-            //foreach (var category in db.Categories) Console.WriteLine(category.CategoryId + " " + category.Name);
             List<string> dietPlans = new List<string>();
             foreach (var dietPlan in db.DietPlans) dietPlans.Add($"{dietPlan.DietPlanId} {dietPlan.Name} {dietPlan.FoodType}, {dietPlan.FoodAmountInCups} cup(s)");
-
             UserInterface.DisplayUserOptions(dietPlans);
             UserInterface.DisplayUserOptions("Enter the number of the diet plan you want: ");
             return UserInterface.GetIntegerData();
-
-            
         }
         internal static void RemoveAnimal(Animal animal)
         {
@@ -240,25 +233,22 @@ namespace HumaneSociety
         internal static void EnterAnimalUpdate(Animal animal, Dictionary<int, string> updates)
         {
             //TODO
-            //HumaneSocietyDataContext db = new HumaneSocietyDataContext();
+            HumaneSocietyDataContext db = new HumaneSocietyDataContext();
             //db.Animals.Where(a => a.AnimalId == animal.AnimalId).First();
             //db.SubmitChanges();
         }
-
         internal static Client GetClient(string userName, string password)
         {
             HumaneSocietyDataContext db = new HumaneSocietyDataContext();
             Client client = db.Clients.Where(c => c.UserName == userName && c.Password == password).Single();
             return client;
         }
-
         internal static List<Client> GetClients()
         {
             HumaneSocietyDataContext  db = new HumaneSocietyDataContext();
             List<Client> allClients = db.Clients.ToList();
             return allClients;
         }
-
         internal static void AddNewClient(string firstName, string lastName, string username, string password, string email, string streetAddress, int zipCode, int stateId)
         {
             HumaneSocietyDataContext  db = new HumaneSocietyDataContext();
