@@ -219,9 +219,9 @@ namespace HumaneSociety
         {
             HumaneSocietyDataContext db = new HumaneSocietyDataContext();
             //ToDO
-            adoption.ApprovalStatus = approve ? "approved" : "denied";
-            var dbAdoption = db.Adoptions.Where(a => a.AdoptionId == adoption.AdoptionId);
-
+            //adoption.ApprovalStatus = approve ? "approved" : "denied";
+            db.Adoptions.Where(a => a.AdoptionId == adoption.AdoptionId).First().ApprovalStatus = approve ? "approved" : "denied";
+            db.Animals.Where(a => a.AnimalId == adoption.AnimalId).First().AdoptionStatus = approve ? "approved" : "denied";
             db.SubmitChanges();
         }
         internal static void UpdateShot(string blahblah, Animal animal)
