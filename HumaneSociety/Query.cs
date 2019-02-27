@@ -157,21 +157,47 @@ namespace HumaneSociety
         }
         internal static List<Animal> SearchForAnimalByMulitpleTraits()
         {
-            //TODO
             HumaneSocietyDataContext db = new HumaneSocietyDataContext();
-
-            // TODO - add filtering?
-            //List<Animal> animalsfound = new List<Animal>();
             Dictionary<int, string> searchCriteria;
             searchCriteria = UserInterface.GetAnimalCriteria();
-
-
-
-
-
-            List<Animal> animalsfound = db.Animals.ToList();
-
-            return animalsfound;
+            List<Animal> animalsFound = db.Animals.ToList();
+            foreach (var keyValuePair in searchCriteria)
+            {   // searchCriteria [0]: {[1, Dog]}  [1]: {[9, True]}
+                switch (keyValuePair.Key)
+                {
+                    // "1. Category", "2. Name", "3. Age", "4. Demeanor", "5. Kid friendly", "6. Pet friendly", "7. Weight", "8. ID", "9. Gender"
+                    case 1:
+                        // lookup Dog's CategoryID
+                        var categoryID = db.Categories.Where(c => c.Name == keyValuePair.Value).Select(c => c.CategoryId).First();
+                        animalsFound = animalsFound.Where(a => a.CategoryId == categoryID).ToList();// (db.Categories.Where(c => c.Name == keyValuePair.Value).Select(c => c.CategoryId).First()));
+                        break;
+                    case 2: // Name
+                        animalsFound = animalsFound.Where(a => a.Name == keyValuePair.Value).ToList();
+                        break;
+                    case 3: // Age
+                        animalsFound = animalsFound.Where(a => a.Name == keyValuePair.Value).ToList();
+                        break;
+                    case 4: // Demeanor
+                        animalsFound = animalsFound.Where(a => a.Demeanor == keyValuePair.Value).ToList();
+                        break;
+                    case 5: // Kid friendly
+                        animalsFound = animalsFound.Where(a => a.KidFriendly == Convert.ToBoolean(keyValuePair.Value)).ToList();
+                        break;
+                    case 6: // Pet friendly
+                        animalsFound = animalsFound.Where(a => a.PetFriendly == Convert.ToBoolean(keyValuePair.Value)).ToList();
+                        break;
+                    case 7: // Weight
+                        animalsFound = animalsFound.Where(a => a.Weight == Convert.ToInt32(keyValuePair.Value)).ToList();
+                        break;
+                    case 8: // ID
+                        animalsFound = animalsFound.Where(a => a.AnimalId == Convert.ToInt32(keyValuePair.Value)).ToList();
+                        break;
+                    case 9: // Gender
+                        animalsFound = animalsFound.Where(a => a.Gender == keyValuePair.Value).ToList();
+                        break;
+                }
+            }
+            return animalsFound;
         }
         internal static List<Adoption> GetPendingAdoptions()
         {
