@@ -104,11 +104,10 @@ namespace HumaneSociety
             int input = UserInterface.GetIntegerData();
             if (input == 99)
             {
-                //add
-                //UserInterface.DisplayUserOptions("Enter the name of the category you want to add: ");
-                //string newCategory = UserInterface.GetStringData("name of the category/species", "the new");
-                Category newCategory = new Category();
-                newCategory.Name = UserInterface.GetStringData("name of the category/species", "the new");
+                Category newCategory = new Category
+                {
+                    Name = UserInterface.GetStringData("name of the category/species", "the new")
+                };
                 db.Categories.InsertOnSubmit(newCategory);
                 db.SubmitChanges();
                 return newCategory.CategoryId;

@@ -35,7 +35,7 @@ namespace HumaneSociety
         }
         protected virtual void LogInPreExistingUser()
         {
-            //TODO
+            
         }
 
         protected abstract void RunUserMenus();
