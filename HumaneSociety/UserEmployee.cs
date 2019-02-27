@@ -196,8 +196,9 @@ namespace HumaneSociety
             }
             else
             {
-                updates = UserInterface.EnterSearchCriteria(updates, input);
-                UpdateAnimal(animal);
+                //updates = UserInterface.EnterSearchCriteria(updates, input);
+                updates.Add(Convert.ToInt32(input), "");
+                UpdateAnimal(animal, updates);
             }
         }
 
