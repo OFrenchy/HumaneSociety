@@ -154,7 +154,7 @@ namespace HumaneSociety
         public static void DisplayAnimalInfo(Animal animal)
         {
             Room animalRoom = Query.GetRoom(animal.AnimalId);
-            List<string> info = new List<string>() {"ID: " + animal.AnimalId, animal.Name, animal.Age + " year(s) old", animal.Gender + " gender", "Demeanour: " + animal.Demeanor, "Kid-friendly: " + BoolToYesNo(animal.KidFriendly), "pet-friendly: " + BoolToYesNo(animal.PetFriendly), $"Room number: " + animalRoom.RoomNumber, "Weight: " + animal.Weight.ToString(),  "Food amount in cups: " + (animal.DietPlan == null ? "??" : animal.DietPlan.FoodAmountInCups.ToString()) };
+            List<string> info = new List<string>() {"ID: " + animal.AnimalId, animal.Name, animal.Age + " years old", animal.Gender + " gender", "Demeanour: " + animal.Demeanor, "Kid friendly: " + BoolToYesNo(animal.KidFriendly), "pet friendly: " + BoolToYesNo(animal.PetFriendly), $"Location: " + animalRoom.RoomId, "Weight: " + animal.Weight.ToString(),  "Food amount in cups: " + (animal.DietPlan == null ? "??" : animal.DietPlan.FoodAmountInCups.ToString()) };
             DisplayUserOptions(info);
             Console.WriteLine("Press enter to continue.");
             Console.ReadLine();
@@ -210,16 +210,10 @@ namespace HumaneSociety
         public static Dictionary<int, string> EnterSearchCriteria(Dictionary<int, string> searchParameters, string input)
         {
             Console.Clear();
-            // if it's already in the dictionary, alert & skip
-            if  (searchParameters.ContainsKey( Convert.ToInt32(input)))
-            {
-                DisplayUserOptions($"You have already entered search criteria no. {input}.\nPress enter to continue.");
-                return searchParameters;
-            }
             switch (input)
             {
                 case "1":
-                    searchParameters.Add(1, UserInterface.GetStringData("category (i.e. Dog, Cat, etc. (Case-Sensitive", "the animal's"));
+                    searchParameters.Add(1, UserInterface.GetStringData("category", "the animal's"));
                     return searchParameters;
                 case "2":
                     searchParameters.Add(2, UserInterface.GetStringData("name", "the animal's"));
@@ -231,10 +225,10 @@ namespace HumaneSociety
                     searchParameters.Add(4, UserInterface.GetStringData("demeanor", "the animal's"));
                     return searchParameters;
                 case "5":
-                    searchParameters.Add(5, UserInterface.GetBitData("the animal", "kid-friendly").ToString());
+                    searchParameters.Add(5, UserInterface.GetBitData("the animal", "kid friendly").ToString());
                     return searchParameters;
                 case "6":
-                    searchParameters.Add(6, UserInterface.GetBitData("the animal", "pet-friendly").ToString());
+                    searchParameters.Add(6, UserInterface.GetBitData("the animal", "pet friendly").ToString());
                     return searchParameters;
                 case "7":
                     searchParameters.Add(7, UserInterface.GetIntegerData("weight", "the animal's").ToString());
@@ -243,11 +237,11 @@ namespace HumaneSociety
                     searchParameters.Add(8, UserInterface.GetIntegerData("ID", "the animal's").ToString());
                     return searchParameters;
                 case "9":
-                    //searchParameters.Add(9, UserInterface.GetBitData("the animal", "male").ToString());
-                    searchParameters.Add(9, UserInterface.GetStringData("gender", "the animal's").ToLower());
+                    searchParameters.Add(9, UserInterface.GetBitData("the animal", "male").ToString());
+                    //searchParameters.Add(9, UserInterface.GetIntegerData("gender", "the animal's").ToString());
                     return searchParameters;
                 default:
-                    UserInterface.DisplayUserOptions("Input not recognized please try again");
+                    UserInterface.DisplayUserOptions("Input not recognized please try agian");
                     return searchParameters;
             }
         }
