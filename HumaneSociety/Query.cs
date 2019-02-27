@@ -64,18 +64,11 @@ namespace HumaneSociety
             }
         }
 
-        internal static  Animal GetAnimalByID(int ID)
+        internal static Animal GetAnimalByID(int ID)
         {
             HumaneSocietyDataContext db = new HumaneSocietyDataContext();
             return db.Animals.Where(a => a.AnimalId == ID).First();
         }
-        internal static List<AnimalShot> GetShots(Animal animal)
-        {
-            HumaneSocietyDataContext db = new HumaneSocietyDataContext();
-            List<AnimalShot> animalshots = db.AnimalShots.Where(a => a.AnimalId == animal.AnimalId).ToList() ;
-            return animalshots;
-        }
-
         internal static List<USState> GetStates()
         {
             HumaneSocietyDataContext db = new HumaneSocietyDataContext();
@@ -210,7 +203,6 @@ namespace HumaneSociety
         internal static List<Adoption> GetPendingAdoptions()
         {
             HumaneSocietyDataContext db = new HumaneSocietyDataContext();
-            // TODO - status pending??  
             List<Adoption> pendingAdoptions = db.Adoptions.Where(a => a.ApprovalStatus == "pending").ToList();
             return pendingAdoptions;
         }
@@ -221,6 +213,12 @@ namespace HumaneSociety
             db.Adoptions.Where(a => a.AdoptionId == adoption.AdoptionId).First().ApprovalStatus = approve ? "approved" : "denied";
             db.Animals.Where(a => a.AnimalId == adoption.AnimalId).First().AdoptionStatus = approve ? "approved" : "denied";
             db.SubmitChanges();
+        }
+        internal static List<AnimalShot> GetShots(Animal animal)
+        {
+            HumaneSocietyDataContext db = new HumaneSocietyDataContext();
+            List<AnimalShot> animalshots = db.AnimalShots.Where(a => a.AnimalId == animal.AnimalId).ToList();
+            return animalshots;
         }
         internal static void UpdateShot(string blahblah, Animal animal)
         {
@@ -289,26 +287,20 @@ namespace HumaneSociety
         internal static List<Client> GetClients()
         {
             HumaneSocietyDataContext  db = new HumaneSocietyDataContext();
-
             List<Client> allClients = db.Clients.ToList();
-
             return allClients;
         }
 
         internal static void AddNewClient(string firstName, string lastName, string username, string password, string email, string streetAddress, int zipCode, int stateId)
         {
             HumaneSocietyDataContext  db = new HumaneSocietyDataContext();
-
             Client newClient = new Client();
-
             newClient.FirstName = firstName;
             newClient.LastName = lastName;
             newClient.UserName = username;
             newClient.Password = password;
             newClient.Email = email;
-
             Address addressFromDb = db.Addresses.Where(a => a.AddressLine1 == streetAddress && a.Zipcode == zipCode && a.USStateId == stateId).FirstOrDefault();
-
             // if the address isn't found in the Db, create and insert it
             if (addressFromDb == null)
             {
@@ -317,41 +309,30 @@ namespace HumaneSociety
                 newAddress.AddressLine2 = null;
                 newAddress.Zipcode = zipCode;
                 newAddress.USStateId = stateId;
-
                 db.Addresses.InsertOnSubmit(newAddress);
                 db.SubmitChanges();
-
                 addressFromDb = newAddress;
             }
-
             // attach AddressId to clientFromDb.AddressId
             newClient.AddressId = addressFromDb.AddressId;
-
             db.Clients.InsertOnSubmit(newClient);
-
             db.SubmitChanges();
         }
-
         internal static void UpdateClient(Client clientWithUpdates)
         {
             HumaneSocietyDataContext  db = new HumaneSocietyDataContext();
-
             // find corresponding Client from Db
             Client clientFromDb = db.Clients.Where(c => c.ClientId == clientWithUpdates.ClientId).Single();
-
             // update clientFromDb information with the values on clientWithUpdates (aside from address)
             clientFromDb.FirstName = clientWithUpdates.FirstName;
             clientFromDb.LastName = clientWithUpdates.LastName;
             clientFromDb.UserName = clientWithUpdates.UserName;
             clientFromDb.Password = clientWithUpdates.Password;
             clientFromDb.Email = clientWithUpdates.Email;
-
             // get address object from clientWithUpdates
             Address clientAddress = clientWithUpdates.Address;
-
             // look for existing Address in Db (null will be returned if the address isn't already in the Db
             Address updatedAddress = db.Addresses.Where(a => a.AddressLine1 == clientAddress.AddressLine1 && a.USStateId == clientAddress.USStateId && a.Zipcode == clientAddress.Zipcode).FirstOrDefault();
-
             // if the address isn't found in the Db, create and insert it
             if(updatedAddress == null)
             {
@@ -360,25 +341,19 @@ namespace HumaneSociety
                 newAddress.AddressLine2 = null;
                 newAddress.Zipcode = clientAddress.Zipcode;
                 newAddress.USStateId = clientAddress.USStateId;
-
                 db.Addresses.InsertOnSubmit(newAddress);
                 db.SubmitChanges();
-
                 updatedAddress = newAddress;
             }
-
             // attach AddressId to clientFromDb.AddressId
             clientFromDb.AddressId = updatedAddress.AddressId;
-            
             // submit changes
             db.SubmitChanges();
         }
-
         internal static Employee RetrieveEmployeeUser(string email, int employeeNumber)
         {
             HumaneSocietyDataContext  db = new HumaneSocietyDataContext();
             Employee employeeFromDb = db.Employees.Where(e => e.Email == email && e.EmployeeNumber == employeeNumber).FirstOrDefault();
-
             if (employeeFromDb == null)
             {
                 throw new NullReferenceException();
