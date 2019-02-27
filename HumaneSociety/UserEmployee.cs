@@ -76,7 +76,6 @@ namespace HumaneSociety
                 int input = UserInterface.GetIntegerData();
                 ApproveAdoption(adoptions[input - 1]);
             }
-
         }
 
         private void ApproveAdoption(Adoption adoption)
