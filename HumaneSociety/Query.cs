@@ -100,8 +100,23 @@ namespace HumaneSociety
             List<string> categories = new List<string>();
             foreach (var category in db.Categories) categories.Add($"{category.CategoryId}  {category.Name}");
             UserInterface.DisplayUserOptions(categories);
-            UserInterface.DisplayUserOptions("Enter the number of the category you want: ");
-            return UserInterface.GetIntegerData();
+            UserInterface.DisplayUserOptions("Enter the number of the category/species you want, or enter 99 to add another category/species: ");
+            int input = UserInterface.GetIntegerData();
+            if (input == 99)
+            {
+                //add
+                //UserInterface.DisplayUserOptions("Enter the name of the category you want to add: ");
+                //string newCategory = UserInterface.GetStringData("name of the category/species", "the new");
+                Category newCategory = new Category();
+                newCategory.Name = UserInterface.GetStringData("name of the category/species", "the new");
+                db.Categories.InsertOnSubmit(newCategory);
+                db.SubmitChanges();
+                return newCategory.CategoryId;
+            }
+            else
+            {
+                return input;
+            }
         }
         internal static int GetDietPlanId()
         {
