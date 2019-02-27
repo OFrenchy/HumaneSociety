@@ -165,6 +165,9 @@ namespace HumaneSociety
             searchCriteria = UserInterface.GetAnimalCriteria();
 
 
+
+
+
             List<Animal> animalsfound = db.Animals.ToList();
 
             return animalsfound;
