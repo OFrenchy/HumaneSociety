@@ -9,7 +9,6 @@ namespace HumaneSociety
     public static class UserInterface
     {
         private static int adoptionFee = 75;
-
         public static int AdoptionFee
         {
             get => adoptionFee;

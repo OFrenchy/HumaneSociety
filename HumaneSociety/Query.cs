@@ -154,7 +154,8 @@ namespace HumaneSociety
             HumaneSocietyDataContext db = new HumaneSocietyDataContext();
             Dictionary<int, string> searchCriteria;
             searchCriteria = UserInterface.GetAnimalCriteria();
-            List<Animal> animalsFound = db.Animals.ToList();
+            //List<Animal> animalsFound = db.Animals.ToList();
+            List<Animal> animalsFound = db.Animals.Where(a => a.AdoptionStatus == null || a.AdoptionStatus == "denied").ToList();
             foreach (var keyValuePair in searchCriteria)
             {   // searchCriteria [0]: {[1, Dog]}  [1]: {[9, True]}
                 switch (keyValuePair.Key)
@@ -213,7 +214,7 @@ namespace HumaneSociety
             List<AnimalShot> animalshots = db.AnimalShots.Where(a => a.AnimalId == animal.AnimalId).ToList();
             return animalshots;
         }
-        internal static void UpdateShot(string blahblah, Animal animal)
+        internal static void UpdateShot(string booster, Animal animal)
         {
             animal.AnimalShots.Count();
             HumaneSocietyDataContext db = new HumaneSocietyDataContext();
