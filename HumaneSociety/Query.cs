@@ -142,7 +142,7 @@ namespace HumaneSociety
             adoption.ClientId = client.ClientId;
             adoption.AnimalId = animal.AnimalId;
             adoption.ApprovalStatus = "pending";
-            adoption.AdoptionFee = UserInterface.AdoptionFee;
+            adoption.AdoptionFee = Admin.AdoptionFee;
             adoption.PaymentCollected = true;
             db.Adoptions.InsertOnSubmit(adoption);
             db.SubmitChanges();

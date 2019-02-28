@@ -8,6 +8,13 @@ namespace HumaneSociety
 {
     class Admin : User
     {
+        private static int adoptionFee = 75;
+        public static int AdoptionFee
+        {
+            get => adoptionFee;
+            // TODO - for future improvement, figure out how to only allow admin to change adoption fee
+            // set => adoptionFee == value;
+        }
         public override void LogIn()
         {
             UserInterface.DisplayUserOptions("What is your password?");

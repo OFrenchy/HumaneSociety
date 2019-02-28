@@ -8,13 +8,6 @@ namespace HumaneSociety
 {
     public static class UserInterface
     {
-        private static int adoptionFee = 75;
-        public static int AdoptionFee
-        {
-            get => adoptionFee;
-            // TODO - for future improvement, figure out how to only allow admin to change adoption fee
-            // set => adoptionFee == value;
-        }
         public static void DisplayUserOptions(List<string> options)
         {
             foreach(string option in options)
