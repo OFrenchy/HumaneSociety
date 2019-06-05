@@ -151,7 +151,8 @@ namespace HumaneSociety
         {
             HumaneSocietyDataContext db = new HumaneSocietyDataContext();
             var room = db.Rooms.Where(r => r.AnimalId == null).First();
-            if (room == null) return false; return true;
+            //if (room == null) return false; return true;
+            return room == null ? false : true;
         }
 
         internal static void AddAnimal(Animal animal)
@@ -282,7 +283,21 @@ namespace HumaneSociety
                         dbAnimal.DietPlanId = Query.GetDietPlanId();
                         break;
                     case 10: // Location/Room
-                        //dbAnimal.Rooms. .DietPlanId = Query.GetDietPlanId();
+
+                        // Find an open room;
+                        // if there is one open, change the location of the animal;
+                        // if not, display a message saying no open rooms to change the animal's location
+
+                        var newRoom = db.Rooms.Where(r => r.AnimalId == null).First();
+                        if (newRoom == null)
+                        {
+                            UserInterface.DisplayUserOptions("This animal cannot be moved because there are no open rooms.");
+                            break;
+                        }
+                        // get the current room 
+                        var oldRoom = db.Rooms.Where(r => r.AnimalId == animal.AnimalId).First();
+                        oldRoom.AnimalId = null;
+                        newRoom.AnimalId = animal.AnimalId;
                         break;
                 }
                 db.SubmitChanges();
