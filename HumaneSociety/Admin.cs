@@ -38,6 +38,7 @@ namespace HumaneSociety
             RunInput(input);
         }
 
+        // =============== Added delegate code below ==================================================
         private delegate void EmployeeFunction();
 
         protected void RunInput(string input)
@@ -63,36 +64,11 @@ namespace HumaneSociety
             {
                 employeeFunction = InvalidInput;
             }
-            
-            //{
-            //    AddEmployee();
-            //    RunUserMenus();
-            //}
-            //else if(input == "2" || input.ToLower() == "delete")
-            //{
-            //    RemoveEmployee();
-            //    RunUserMenus();
-            //}
-            //else if(input == "3" || input.ToLower() == "read")
-            //{
-            //    ReadEmployee();
-            //    RunUserMenus();
-            //}
-            //else if (input == "4" || input.ToLower() == "update")
-            //{
-            //    UpdateEmployee();
-            //    RunUserMenus();
-            //}
-            //else
-            //{
-            //    UserInterface.DisplayUserOptions("Input not recognized please try again or type exit");
-            //    //RunUserMenus();
-            //}
-
             // Run delegate:
             employeeFunction();
             RunUserMenus();
         }
+        // =============== Added delegate code above ==================================================
 
         private void UpdateEmployee()
         {
