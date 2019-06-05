@@ -253,7 +253,7 @@ namespace HumaneSociety
             {   // searchCriteria [0]: {[1, Dog]}  [1]: {[9, True]}
                 switch (keyValuePair.Key)
                 {
-                    // "1. Category", "2. Name", "3. Age", "4. Demeanor", "5. Kid friendly", "6. Pet friendly", "7. Weight", "8. Gender", "9. Diet Plan"
+                    // "1. Category", "2. Name", "3. Age", "4. Demeanor", "5. Kid friendly", "6. Pet friendly", "7. Weight", "8. Gender", "9. Diet Plan", "10. Location/Room"
                     case 1:
                         animal.CategoryId = Query.GetCategoryId();
                         break;
@@ -280,6 +280,9 @@ namespace HumaneSociety
                         break;
                     case 9: // Diet plan
                         dbAnimal.DietPlanId = Query.GetDietPlanId();
+                        break;
+                    case 10: // Location/Room
+                        //dbAnimal.Rooms. .DietPlanId = Query.GetDietPlanId();
                         break;
                 }
                 db.SubmitChanges();

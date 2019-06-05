@@ -186,7 +186,11 @@ namespace HumaneSociety
             {
                 updates = new Dictionary<int, string>();
             }
-            List<string> options = new List<string>() { "Select Updates: (Enter number and choose finished when finished)", "1. Category", "2. Name", "3. Age", "4. Demeanor", "5. Kid-friendly", "6. Pet-friendly", "7. Weight", "8. Gender", "9. Diet Plan", "99. Finished" };
+
+
+            //                                List<string> info = new List<string>() {"ID: " + animal.AnimalId, animal.Name, animal.Age + " years old", animal.Gender + " gender", "Demeanour: " + animal.Demeanor, "Kid friendly: " + BoolToYesNo(animal.KidFriendly), "pet friendly: " + BoolToYesNo(animal.PetFriendly), $"Location/Room: " + animalRoom.RoomId, "Weight: " + animal.Weight.ToString(),  "Food amount in cups: " + (animal.DietPlan == null ? "??" : animal.DietPlan.FoodAmountInCups.ToString()) };
+
+            List<string> options = new List<string>() { "Select Updates: (Enter number and choose finished when finished)", "1. Category", "2. Name", "3. Age", "4. Demeanor", "5. Kid-friendly", "6. Pet-friendly", "7. Weight", "8. Gender", "9. Diet Plan", "10. Location/Room", "99. Finished" };
             UserInterface.DisplayUserOptions(options);
             string input = UserInterface.GetUserInput();
             //was "9"
