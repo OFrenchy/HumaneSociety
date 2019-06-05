@@ -186,22 +186,16 @@ namespace HumaneSociety
             {
                 updates = new Dictionary<int, string>();
             }
-
-
-            //                                List<string> info = new List<string>() {"ID: " + animal.AnimalId, animal.Name, animal.Age + " years old", animal.Gender + " gender", "Demeanour: " + animal.Demeanor, "Kid friendly: " + BoolToYesNo(animal.KidFriendly), "pet friendly: " + BoolToYesNo(animal.PetFriendly), $"Location/Room: " + animalRoom.RoomId, "Weight: " + animal.Weight.ToString(),  "Food amount in cups: " + (animal.DietPlan == null ? "??" : animal.DietPlan.FoodAmountInCups.ToString()) };
-
+            
             List<string> options = new List<string>() { "Select Updates: (Enter number and choose finished when finished)", "1. Category", "2. Name", "3. Age", "4. Demeanor", "5. Kid-friendly", "6. Pet-friendly", "7. Weight", "8. Gender", "9. Diet Plan", "10. Location/Room", "99. Finished" };
             UserInterface.DisplayUserOptions(options);
             string input = UserInterface.GetUserInput();
-            //was "9"
             if (input.ToLower() == "99" ||input.ToLower() == "finished")
             {
                 Query.EnterAnimalUpdate(animal, updates);
             }
             else
             {
-                //updates = UserInterface.EnterSearchCriteria(updates, input);
-                updates.Add(Convert.ToInt32(input), "");
                 UpdateAnimal(animal, updates);
             }
         }
@@ -250,8 +244,6 @@ namespace HumaneSociety
         }
         private void AddAnimal()
         {
-            // finnish category id
-            //finnish diet plan
             Console.Clear();
             if (!Query.Vacancy())
             {
@@ -297,7 +289,6 @@ namespace HumaneSociety
                 UserInterface.DisplayUserOptions("Employee not found, please try again, create a new user or contact your administrator");
                 LogIn();
             }
-            
         }
         private void CreateNewEmployee()
         {

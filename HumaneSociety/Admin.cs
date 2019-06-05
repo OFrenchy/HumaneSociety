@@ -37,38 +37,66 @@ namespace HumaneSociety
             string input = UserInterface.GetUserInput();
             RunInput(input);
         }
+
+        private delegate void EmployeeFunction();
+
         protected void RunInput(string input)
         {
-            if(input == "1" || input.ToLower() == "create")
+            EmployeeFunction employeeFunction;
+            if (input == "1" || input.ToLower() == "create")
             {
-                AddEmployee();
-                RunUserMenus();
+                employeeFunction = AddEmployee;
             }
-            else if(input == "2" || input.ToLower() == "delete")
+            else if (input == "2" || input.ToLower() == "delete")
             {
-                RemoveEmployee();
-                RunUserMenus();
+                employeeFunction = RemoveEmployee;
             }
-            else if(input == "3" || input.ToLower() == "read")
+            else if (input == "3" || input.ToLower() == "read")
             {
-                ReadEmployee();
-                RunUserMenus();
+                employeeFunction = ReadEmployee;
             }
             else if (input == "4" || input.ToLower() == "update")
             {
-                UpdateEmployee();
-                RunUserMenus();
+                employeeFunction = UpdateEmployee;
             }
             else
             {
-                UserInterface.DisplayUserOptions("Input not recognized please try again or type exit");
-                RunUserMenus();
+                employeeFunction = InvalidInput;
             }
+            
+            //{
+            //    AddEmployee();
+            //    RunUserMenus();
+            //}
+            //else if(input == "2" || input.ToLower() == "delete")
+            //{
+            //    RemoveEmployee();
+            //    RunUserMenus();
+            //}
+            //else if(input == "3" || input.ToLower() == "read")
+            //{
+            //    ReadEmployee();
+            //    RunUserMenus();
+            //}
+            //else if (input == "4" || input.ToLower() == "update")
+            //{
+            //    UpdateEmployee();
+            //    RunUserMenus();
+            //}
+            //else
+            //{
+            //    UserInterface.DisplayUserOptions("Input not recognized please try again or type exit");
+            //    //RunUserMenus();
+            //}
+
+            // Run delegate:
+            employeeFunction();
+            RunUserMenus();
         }
 
         private void UpdateEmployee()
         {
-            Query.RunEmployeeQueries(null,"display");
+            Query.RunEmployeeQueries(null, "display");
             Employee employee = new Employee();
             //employee.id = UserInterface.GetStringData("ID", "the employee's");
             employee.EmployeeId = int.Parse(UserInterface.GetStringData("employee ID to update", "the employee's"));
@@ -135,7 +163,7 @@ namespace HumaneSociety
         private void RemoveEmployee()
         {
             Employee employee = new Employee();
-            employee.LastName = UserInterface.GetStringData("last name", "the employee's"); 
+            employee.LastName = UserInterface.GetStringData("last name", "the employee's");
             employee.EmployeeNumber = int.Parse(UserInterface.GetStringData("employee number", "the employee's"));
             try
             {
@@ -157,7 +185,7 @@ namespace HumaneSociety
             employee.FirstName = UserInterface.GetStringData("first name", "the employee's");
             employee.LastName = UserInterface.GetStringData("last name", "the employee's");
             employee.EmployeeNumber = int.Parse(UserInterface.GetStringData("employee number", "the employee's"));
-            employee.Email = UserInterface.GetStringData("email", "the employee's"); 
+            employee.Email = UserInterface.GetStringData("email", "the employee's");
             try
             {
                 Query.RunEmployeeQueries(employee, "create");
@@ -169,6 +197,11 @@ namespace HumaneSociety
                 UserInterface.DisplayUserOptions("Employee addition unsuccessful please try again or type exit;");
                 return;
             }
+        }
+        private void InvalidInput()
+        {
+            UserInterface.DisplayUserOptions("Input not recognized please try again or type exit");
+            return;
         }
     }
 }

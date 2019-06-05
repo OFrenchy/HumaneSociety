@@ -283,11 +283,9 @@ namespace HumaneSociety
                         dbAnimal.DietPlanId = Query.GetDietPlanId();
                         break;
                     case 10: // Location/Room
-
                         // Find an open room;
                         // if there is one open, change the location of the animal;
                         // if not, display a message saying no open rooms to change the animal's location
-
                         var newRoom = db.Rooms.Where(r => r.AnimalId == null).First();
                         if (newRoom == null)
                         {
